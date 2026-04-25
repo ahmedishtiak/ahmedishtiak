@@ -1073,6 +1073,352 @@ footer {
 
 .back-to-top:hover { background: var(--gold-light); transform: translateY(-2px); }
 
+/* ─── WRITINGS ─── */
+.writings-section { background: var(--navy); }
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+
+.filter-btn {
+  padding: 7px 16px;
+  border-radius: 30px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+}
+
+.writings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.writing-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color var(--transition), transform var(--transition), background var(--transition);
+  cursor: default;
+}
+
+.writing-card:hover {
+  border-color: rgba(201,168,76,0.45);
+  background: rgba(201,168,76,0.03);
+  transform: translateY(-4px);
+}
+
+.writing-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.writing-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.badge-thesis     { background: rgba(79,163,212,0.12); border: 1px solid rgba(79,163,212,0.3);  color: #4fa3d4; }
+.badge-article    { background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3);  color: var(--gold); }
+.badge-report     { background: rgba(39,174,96,0.12);  border: 1px solid rgba(39,174,96,0.3);   color: #4ade80; }
+.badge-post       { background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.3);  color: #c084fc; }
+.badge-conference { background: rgba(251,146,60,0.12); border: 1px solid rgba(251,146,60,0.3);  color: #fb923c; }
+.badge-other      { background: rgba(156,163,175,0.12);border: 1px solid rgba(156,163,175,0.3); color: #9ca3af; }
+
+.writing-year {
+  font-size: 11px;
+  color: var(--text-dim);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.writing-title {
+  font-family: var(--font-head);
+  font-size: 15px;
+  color: var(--off-white);
+  line-height: 1.4;
+}
+
+.writing-authors {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: -4px;
+}
+
+.writing-venue {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.writing-excerpt {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.writing-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.writing-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+
+.writing-btn-read {
+  background: var(--gold);
+  color: var(--navy);
+  flex: 1;
+  justify-content: center;
+}
+
+.writing-btn-read:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+.writing-btn-dl {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+
+.writing-btn-dl:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201,168,76,0.08);
+  transform: translateY(-1px);
+}
+
+.writings-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
+/* ADD WRITING GUIDE */
+.writings-guide {
+  margin-top: 40px;
+  padding: 22px 26px;
+  background: rgba(255,255,255,0.02);
+  border: 1px dashed rgba(201,168,76,0.25);
+  border-radius: var(--radius);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.writings-guide-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+
+.writings-guide h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--off-white);
+  margin-bottom: 6px;
+}
+
+.writings-guide p {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin-bottom: 4px;
+}
+
+.writings-guide code {
+  font-size: 11px;
+  background: rgba(201,168,76,0.1);
+  color: var(--gold);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
+
+/* ─── MODAL ─── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5,14,24,0.92);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal {
+  background: var(--navy-mid);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  transform: scale(0.96) translateY(12px);
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  overflow: hidden;
+}
+
+.modal-overlay.open .modal {
+  transform: scale(1) translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 22px 24px 18px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.modal-title-wrap { flex: 1; min-width: 0; }
+
+.modal-badge { margin-bottom: 8px; }
+
+.modal-title {
+  font-family: var(--font-head);
+  font-size: 17px;
+  color: var(--off-white);
+  line-height: 1.35;
+  margin-bottom: 4px;
+}
+
+.modal-meta {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.modal-header-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  align-items: flex-start;
+}
+
+.modal-close {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  line-height: 1;
+}
+
+.modal-close:hover { background: rgba(255,0,0,0.1); border-color: rgba(255,0,0,0.3); color: #f87171; }
+
+.modal-body {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  min-height: 400px;
+  background: #1a1a1a;
+}
+
+.modal-iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  border: none;
+  display: block;
+}
+
+.modal-ext-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 260px;
+  gap: 16px;
+  padding: 40px;
+  text-align: center;
+}
+
+.modal-ext-icon { font-size: 48px; }
+
+.modal-ext-text { font-size: 14px; color: var(--text-dim); line-height: 1.6; max-width: 320px; }
+
+.modal-ext-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--gold);
+  color: var(--navy);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background var(--transition);
+  margin-top: 6px;
+}
+
+.modal-ext-btn:hover { background: var(--gold-light); }
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 900px) {
   nav { padding: 0 24px; }
@@ -1093,7 +1439,9 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .expertise-grid { grid-template-columns: 1fr; }
+  .writings-grid { grid-template-columns: 1fr; }
+  .modal { max-height: 95vh; }
+  .modal-iframe { min-height: 380px; }
   .hero-actions { flex-direction: column; }
   .btn-primary, .btn-secondary { justify-content: center; }
 }
@@ -1108,6 +1456,7 @@ footer {
     <li><a href="#expertise">Expertise</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#publications">Research</a></li>
+    <li><a href="#writings">Writings</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
@@ -1121,6 +1470,7 @@ footer {
   <a href="#expertise" class="mobile-link">Expertise</a>
   <a href="#experience" class="mobile-link">Experience</a>
   <a href="#publications" class="mobile-link">Research</a>
+  <a href="#writings" class="mobile-link">Writings</a>
   <a href="#education" class="mobile-link">Education</a>
   <a href="#contact" class="mobile-link">Contact</a>
 </div>
@@ -1369,6 +1719,56 @@ footer {
 
 <hr class="divider">
 
+<!-- WRITINGS -->
+<section class="writings-section" id="writings">
+  <div class="section">
+    <div class="reveal">
+      <div class="section-label"><span></span> Knowledge Hub</div>
+      <h2 class="section-title">Writings & Articles</h2>
+      <p class="section-sub">Research papers, trade finance articles, professional insights, and everything I've put to paper — all in one place.</p>
+    </div>
+
+    <div class="filter-bar reveal" id="filterBar">
+      <!-- Rendered by JS -->
+    </div>
+
+    <div class="writings-grid reveal" id="writingsGrid">
+      <!-- Rendered by JS -->
+    </div>
+
+    <div class="writings-guide reveal" style="margin-top:40px;">
+      <div class="writings-guide-icon">📌</div>
+      <div>
+        <h4>Adding new writings</h4>
+        <p>Drop your PDF file into a <code>writings/</code> folder in the GitHub repo, then add one entry to the <code>WRITINGS</code> array at the bottom of this file — no other changes needed.</p>
+        <p>For web articles, set <code>file: null</code> and provide a <code>url</code> instead. The card will open it in a modal or new tab automatically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL VIEWER -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-title-wrap">
+        <div class="modal-badge" id="modalBadge"></div>
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-meta" id="modalMeta"></div>
+      </div>
+      <div class="modal-header-actions">
+        <a id="modalDownload" href="#" download class="writing-btn writing-btn-dl" style="display:none;">⬇ Download</a>
+        <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      </div>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- content injected by JS -->
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
 <!-- EDUCATION -->
 <section class="experience-section" id="education">
   <div class="section">
@@ -1580,7 +1980,180 @@ document.getElementById('backToTop').addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// ── ACTIVE NAV LINK ON SCROLL ──
+// ═══════════════════════════════════════════════════════════
+// WRITINGS DATA  —  Add your articles, papers, posts here.
+//
+// Fields:
+//   title     (required) — Full title of the piece
+//   type      (required) — 'Thesis' | 'Article' | 'Report' | 'Post' | 'Conference' | 'Other'
+//   authors   (required) — Author string, e.g. "Ahmed, I. (2025)"
+//   venue     (optional) — Journal, platform, institution
+//   year      (required) — e.g. 2025
+//   excerpt   (optional) — One or two sentence description
+//   file      (optional) — Path to PDF, e.g. "writings/my-paper.pdf"
+//                          (null if hosted externally)
+//   url       (optional) — External URL (used if file is null)
+// ═══════════════════════════════════════════════════════════
+const WRITINGS = [
+  {
+    title: "The impact of slowbalization on the sustainability of the ready-made garments industry in Bangladesh",
+    type: "Thesis",
+    authors: "Ahmed, I. (2025)",
+    venue: "JAMK University of Applied Sciences, Finland",
+    year: 2025,
+    excerpt: "Examines how the deceleration of global trade and cross-border integration is reshaping the competitive dynamics and sustainability outlook of Bangladesh's largest export sector.",
+    file: null,
+    url: "https://www.theseus.fi/handle/10024/888174"
+  },
+  {
+    title: "India's economic growth and sustainability challenges",
+    type: "Article",
+    authors: "Ahmed, I., & Akpinar, M. (2025)",
+    venue: "Finnish Business Review",
+    year: 2025,
+    excerpt: "Explores the tensions between India's rapid economic expansion and the environmental, social, and governance pressures that accompany it — drawing on recent data and policy developments.",
+    file: null,
+    url: "https://verkkolehdet.jamk.fi/finnish-business-review/2025/10/02/indias-economic-growth-and-sustainability-challenges/"
+  }
+  // ── Add more entries below this line ──
+  // {
+  //   title: "TBML Red Flags in Documentary Credits",
+  //   type: "Report",
+  //   authors: "Ahmed, I. (2024)",
+  //   venue: "Internal Training Paper, EXIM Bank",
+  //   year: 2024,
+  //   excerpt: "Practical guide to identifying trade-based money laundering indicators within LC workflows.",
+  //   file: "writings/tbml-lc-guide.pdf",
+  //   url: null
+  // },
+];
+
+// ── TYPE CONFIG ──
+const TYPE_CONFIG = {
+  Thesis:     { badge: 'badge-thesis',     icon: '🎓' },
+  Article:    { badge: 'badge-article',    icon: '📰' },
+  Report:     { badge: 'badge-report',     icon: '📊' },
+  Post:       { badge: 'badge-post',       icon: '✍️' },
+  Conference: { badge: 'badge-conference', icon: '🎤' },
+  Other:      { badge: 'badge-other',      icon: '📄' }
+};
+
+// ── FILTER & RENDER ──
+let activeFilter = 'All';
+
+function getFilters() {
+  const types = ['All', ...new Set(WRITINGS.map(w => w.type))];
+  return types;
+}
+
+function renderFilters() {
+  const bar = document.getElementById('filterBar');
+  bar.innerHTML = getFilters().map(f =>
+    `<button class="filter-btn ${f === activeFilter ? 'active' : ''}" data-filter="${f}">${f}</button>`
+  ).join('');
+  bar.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeFilter = btn.dataset.filter;
+      renderFilters();
+      renderWritings();
+    });
+  });
+}
+
+function renderWritings() {
+  const grid = document.getElementById('writingsGrid');
+  const filtered = activeFilter === 'All' ? WRITINGS : WRITINGS.filter(w => w.type === activeFilter);
+
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="writings-empty">No writings in this category yet.</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((w, i) => {
+    const cfg = TYPE_CONFIG[w.type] || TYPE_CONFIG.Other;
+    const hasFile = !!w.file;
+    const hasUrl  = !!w.url;
+    const canRead = hasFile || hasUrl;
+    const dataIdx = WRITINGS.indexOf(w);
+
+    return `
+      <div class="writing-card reveal reveal-delay-${(i % 4) + 1}">
+        <div class="writing-card-top">
+          <span class="writing-type-badge ${cfg.badge}">${cfg.icon} ${w.type}</span>
+          <span class="writing-year">${w.year}</span>
+        </div>
+        <div class="writing-title">${w.title}</div>
+        ${w.authors ? `<div class="writing-authors">${w.authors}</div>` : ''}
+        ${w.venue   ? `<div class="writing-venue">${w.venue}</div>` : ''}
+        ${w.excerpt ? `<div class="writing-excerpt">${w.excerpt}</div>` : ''}
+        <div class="writing-actions">
+          ${canRead
+            ? `<button class="writing-btn writing-btn-read" onclick="openModal(${dataIdx})">Read →</button>`
+            : `<button class="writing-btn writing-btn-read" disabled style="opacity:0.4;cursor:default;">Coming Soon</button>`
+          }
+          ${hasFile
+            ? `<a href="${w.file}" download class="writing-btn writing-btn-dl" title="Download PDF">⬇</a>`
+            : ''
+          }
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Re-observe new cards
+  grid.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+}
+
+// ── MODAL ──
+function openModal(idx) {
+  const w   = WRITINGS[idx];
+  const cfg = TYPE_CONFIG[w.type] || TYPE_CONFIG.Other;
+  const overlay = document.getElementById('modalOverlay');
+  const body    = document.getElementById('modalBody');
+  const dlBtn   = document.getElementById('modalDownload');
+
+  document.getElementById('modalTitle').textContent = w.title;
+  document.getElementById('modalMeta').textContent =
+    [w.authors, w.venue].filter(Boolean).join(' · ');
+  document.getElementById('modalBadge').innerHTML =
+    `<span class="writing-type-badge ${cfg.badge}">${cfg.icon} ${w.type}</span>`;
+
+  if (w.file) {
+    dlBtn.href = w.file;
+    dlBtn.style.display = 'inline-flex';
+    body.innerHTML = `<iframe class="modal-iframe" src="${w.file}" title="${w.title}"></iframe>`;
+  } else if (w.url) {
+    dlBtn.style.display = 'none';
+    body.innerHTML = `
+      <div class="modal-ext-link">
+        <div class="modal-ext-icon">${cfg.icon}</div>
+        <p class="modal-ext-text">This piece is hosted externally. Click below to read it in full on the original platform.</p>
+        <a href="${w.url}" target="_blank" rel="noopener" class="modal-ext-btn">
+          Open — ${w.venue || 'External Link'} ↗
+        </a>
+      </div>`;
+  }
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  const overlay = document.getElementById('modalOverlay');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => { document.getElementById('modalBody').innerHTML = ''; }, 300);
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('modalOverlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Init writings
+renderFilters();
+renderWritings();
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
 
