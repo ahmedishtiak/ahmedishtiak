@@ -4,296 +4,1601 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ishtiak Ahmed | Trade Finance & Payments Specialist</title>
+<meta name="description" content="Banking and financial operations professional with 21+ years of experience in trade finance, SWIFT payments, and cross-border transactions. Based in Finland.">
+<meta property="og:title" content="Ishtiak Ahmed | Trade Finance & Payments Specialist">
+<meta property="og:description" content="21+ years in trade finance, SWIFT operations, and banking. CDCS certified. Based in Espoo, Finland.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: #f5f7fa;
-  color: #1f2933;
+/* ─── VARIABLES ─── */
+:root {
+  --navy:      #0b1c2e;
+  --navy-mid:  #112236;
+  --navy-light:#1a3352;
+  --gold:      #c9a84c;
+  --gold-light:#e8c96d;
+  --off-white: #f0ece4;
+  --text:      #d4cfc6;
+  --text-dim:  #8899aa;
+  --accent:    #4fa3d4;
+  --border:    rgba(201,168,76,0.18);
+  --radius:    10px;
+  --shadow:    0 8px 32px rgba(0,0,0,0.35);
+  --font-head: 'Playfair Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
 }
 
-/* TOP BANNER */
-.banner {
-  background: #0a66c2;
-  color: white;
-  padding: 12px;
-  text-align: center;
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--navy);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--gold); color: var(--navy); }
+
+a { color: inherit; text-decoration: none; }
+
+img { max-width: 100%; display: block; }
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ─── NOISE TEXTURE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 64px;
+  background: rgba(11,28,46,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+}
+
+nav.scrolled {
+  height: 56px;
+  background: rgba(11,28,46,0.97);
+}
+
+.nav-brand {
+  font-family: var(--font-head);
+  font-size: 17px;
+  color: var(--gold);
+  letter-spacing: 0.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: color var(--transition);
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width var(--transition);
+}
+
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  padding: 8px 20px;
+  background: var(--gold);
+  color: var(--navy) !important;
+  border-radius: 4px;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  transition: background var(--transition) !important;
+}
+
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--gold);
+  transition: var(--transition);
+}
+
+.mobile-nav {
+  display: none;
+  position: fixed;
+  inset: 0;
+  top: 64px;
+  background: rgba(11,28,46,0.98);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+}
+
+.mobile-nav.open { display: flex; }
+
+.mobile-nav a {
+  font-family: var(--font-head);
+  font-size: 24px;
+  color: var(--off-white);
+  transition: color var(--transition);
+}
+
+.mobile-nav a:hover { color: var(--gold); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 40px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 50%, rgba(201,168,76,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 10% 80%, rgba(79,163,212,0.06) 0%, transparent 60%),
+    linear-gradient(165deg, #0b1c2e 0%, #0d2340 50%, #0b1c2e 100%);
+}
+
+.hero-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero-content {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-text { max-width: 640px; }
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.hero-eyebrow span {
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(36px, 5vw, 62px);
+  line-height: 1.15;
+  color: var(--off-white);
+  margin-bottom: 16px;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+.hero-title {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+  letter-spacing: 0.3px;
+}
+
+.hero-desc {
+  font-size: 15px;
+  color: var(--text);
+  max-width: 520px;
+  margin-bottom: 36px;
+  line-height: 1.8;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.hero-tag {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-dim);
+  background: rgba(255,255,255,0.03);
+  letter-spacing: 0.3px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  background: transparent;
+  color: var(--off-white);
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 500;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition), transform var(--transition);
 }
 
-/* HEADER */
-.header {
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+/* HERO CARD */
+.hero-card {
+  width: 260px;
+  flex-shrink: 0;
+}
+
+.profile-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 30px 24px;
   text-align: center;
-  padding: 30px 20px;
-  background: white;
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
 }
 
-.header img {
+.profile-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.profile-img-wrap {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 16px;
+  position: relative;
+}
+
+.profile-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  opacity: 0.6;
+}
+
+.profile-img-wrap img {
   width: 110px;
   height: 110px;
   border-radius: 50%;
   object-fit: cover;
+  border: 3px solid var(--navy-mid);
 }
 
-.header h1 {
-  margin: 10px 0 5px;
+/* Placeholder when no photo */
+.profile-placeholder {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-size: 36px;
+  color: var(--gold);
+  border: 3px solid var(--navy-mid);
 }
 
-.badge {
-  display: inline-block;
-  background: #e6f4ea;
-  color: #137333;
-  padding: 6px 12px;
+.profile-name {
+  font-family: var(--font-head);
+  font-size: 16px;
+  color: var(--off-white);
+  margin-bottom: 4px;
+}
+
+.profile-role {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.cdcs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(201,168,76,0.12);
+  border: 1px solid rgba(201,168,76,0.3);
+  color: var(--gold);
+  padding: 5px 12px;
   border-radius: 20px;
-  font-size: 13px;
-  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
 }
 
-.contact a {
-  margin: 0 8px;
-  text-decoration: none;
-  font-size: 20px;
+.work-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(39,174,96,0.12);
+  border: 1px solid rgba(39,174,96,0.3);
+  color: #4ade80;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 20px;
 }
 
-.download a {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 12px 20px;
-  background: #0a66c2;
-  color: white;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
+.work-badge::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
 }
 
-/* SECTIONS */
-.section {
-  max-width: 900px;
-  margin: 20px auto;
-  background: white;
-  padding: 25px;
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.8); }
+}
+
+.social-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.social-btn {
+  width: 36px;
+  height: 36px;
   border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+  cursor: pointer;
 }
 
-h2 {
-  border-bottom: 2px solid #0a66c2;
-  padding-bottom: 5px;
+.social-btn:hover {
+  background: rgba(201,168,76,0.15);
+  border-color: var(--gold);
+  transform: translateY(-2px);
 }
 
-.grid {
+/* STATS ROW */
+.stats-row {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  margin-top: 18px;
+  padding-top: 16px;
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+  padding: 0 4px;
+  border-right: 1px solid var(--border);
+}
+
+.stat:last-child { border-right: none; }
+
+.stat-num {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 20px;
+  color: var(--gold);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+
+.stat-label {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.3px;
+  line-height: 1.3;
+}
+
+/* ─── SECTION WRAPPER ─── */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+.section-label span {
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(28px, 4vw, 40px);
+  color: var(--off-white);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.section-sub {
+  font-size: 15px;
+  color: var(--text-dim);
+  max-width: 540px;
+  margin-bottom: 48px;
+  line-height: 1.7;
+}
+
+/* DIVIDER */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+
+/* ─── EXPERTISE SECTION ─── */
+.expertise-section { background: var(--navy-mid); }
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.expertise-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  transition: border-color var(--transition), transform var(--transition), background var(--transition);
+  cursor: default;
+}
+
+.expertise-card:hover {
+  border-color: rgba(201,168,76,0.5);
+  background: rgba(201,168,76,0.04);
+  transform: translateY(-4px);
+}
+
+.expertise-icon {
+  font-size: 28px;
+  margin-bottom: 14px;
+}
+
+.expertise-card h3 {
+  font-family: var(--font-head);
+  font-size: 15px;
+  color: var(--off-white);
+  margin-bottom: 14px;
+}
+
+.expertise-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.expertise-card li {
+  font-size: 13px;
+  color: var(--text-dim);
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.expertise-card li:last-child { border-bottom: none; }
+
+.expertise-card li::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ─── EXPERIENCE ─── */
+.experience-section { background: var(--navy); }
+
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 8px; bottom: 8px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid var(--border);
+}
+
+.timeline-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -38px; top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--navy);
+  box-shadow: 0 0 0 4px rgba(201,168,76,0.15);
+}
+
+.timeline-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.timeline-role {
+  font-family: var(--font-head);
+  font-size: 20px;
+  color: var(--off-white);
+}
+
+.timeline-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 13px;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.timeline-org {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.achievement-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.achievement-list li {
+  font-size: 13.5px;
+  color: var(--text);
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.03);
+  border-left: 2px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  line-height: 1.5;
+}
+
+/* ─── PUBLICATIONS ─── */
+.publications-section { background: var(--navy-mid); }
+
+.pub-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  margin-bottom: 16px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.pub-card:hover {
+  border-color: rgba(201,168,76,0.4);
+  transform: translateX(4px);
+}
+
+.pub-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.pub-body { flex: 1; }
+
+.pub-title {
+  font-family: var(--font-head);
+  font-size: 15px;
+  color: var(--off-white);
+  margin-bottom: 6px;
+  font-style: italic;
+}
+
+.pub-meta {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+
+.pub-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.5px;
+  transition: gap var(--transition);
+}
+
+.pub-link:hover { gap: 10px; }
+
+/* ─── EDUCATION ─── */
+.edu-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
-ul {
-  padding-left: 18px;
+.edu-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px;
+  transition: border-color var(--transition);
+  position: relative;
+  overflow: hidden;
 }
 
-li {
-  margin-bottom: 8px;
+.edu-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity var(--transition);
 }
 
-a.link {
-  color: #0a66c2;
+.edu-card:hover { border-color: rgba(201,168,76,0.4); }
+.edu-card:hover::after { opacity: 1; }
+
+.edu-year {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.edu-degree {
+  font-family: var(--font-head);
+  font-size: 17px;
+  color: var(--off-white);
+  margin-bottom: 4px;
+}
+
+.edu-school {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+/* ─── CERTIFICATIONS & LANGUAGES ─── */
+.certs-lang-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.cert-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  transition: border-color var(--transition);
+}
+
+.cert-item:hover { border-color: rgba(201,168,76,0.4); }
+
+.cert-icon { font-size: 24px; }
+
+.cert-name {
+  font-size: 14px;
+  color: var(--off-white);
+  font-weight: 500;
+}
+
+.cert-body { font-size: 12px; color: var(--text-dim); }
+
+.lang-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.lang-item:last-child { border-bottom: none; }
+
+.lang-name { font-size: 14px; color: var(--off-white); font-weight: 500; }
+
+.lang-level {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.lang-dots { display: flex; gap: 4px; }
+
+.lang-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.lang-dot.filled { background: var(--gold); }
+
+/* ─── CONFERENCES ─── */
+.conf-list { list-style: none; padding: 0; }
+
+.conf-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text);
+}
+
+.conf-list li:last-child { border-bottom: none; }
+
+.conf-year {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: -0.5px;
+}
+
+/* ─── CONTACT ─── */
+.contact-section {
+  background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.contact-cta h2 {
+  font-family: var(--font-head);
+  font-size: clamp(28px, 3.5vw, 38px);
+  color: var(--off-white);
+  margin-bottom: 14px;
+  line-height: 1.25;
+}
+
+.contact-cta p {
+  font-size: 15px;
+  color: var(--text-dim);
+  margin-bottom: 28px;
+  max-width: 400px;
+}
+
+.contact-details { display: flex; flex-direction: column; gap: 14px; }
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color var(--transition), transform var(--transition);
   text-decoration: none;
+  color: inherit;
 }
 
-a.link:hover {
-  text-decoration: underline;
+.contact-item:hover {
+  border-color: var(--gold);
+  transform: translateX(4px);
+}
+
+.contact-item-icon { font-size: 20px; }
+
+.contact-item-info { flex: 1; }
+
+.contact-item-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  margin-bottom: 2px;
+}
+
+.contact-item-value {
+  font-size: 14px;
+  color: var(--off-white);
+  font-weight: 500;
+}
+
+.contact-item-arrow { color: var(--gold); font-size: 16px; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--navy);
+  border-top: 1px solid var(--border);
+  padding: 28px 40px;
+  text-align: center;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-brand {
+  font-family: var(--font-head);
+  font-size: 15px;
+  color: var(--gold);
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  font-size: 12px;
+  color: var(--text-dim);
+  transition: color var(--transition);
+}
+
+.footer-links a:hover { color: var(--gold); }
+
+/* ─── SCROLL ANIMATIONS ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1),
+              transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── BACK TO TOP ─── */
+.back-to-top {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--transition), transform var(--transition), background var(--transition);
+  box-shadow: 0 4px 16px rgba(201,168,76,0.4);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.back-to-top:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+
+  .hero { padding: 90px 24px 50px; }
+  .hero-content { grid-template-columns: 1fr; gap: 40px; }
+  .hero-card { width: 100%; max-width: 320px; margin: 0 auto; }
+
+  .section { padding: 60px 24px; }
+
+  .achievement-list { grid-template-columns: 1fr; }
+  .edu-grid { grid-template-columns: 1fr; }
+  .certs-lang-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-inner { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 600px) {
+  .expertise-grid { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; }
+  .btn-primary, .btn-secondary { justify-content: center; }
 }
 </style>
 </head>
-
 <body>
 
-<!-- TOP BANNER -->
-<div class="banner">
-📍 Espoo, Finland | Open to Work — Trade Finance | Payments | Banking Operations | Helsinki / Espoo / Vantaa | Full-time & Hybrid
-</div>
-
-<!-- HEADER -->
-<div class="header">
-  <img src="profile.jpg" alt="Profile Photo">
-
-  <h1>Ishtiak Ahmed</h1>
-  <p><strong>Trade Finance | Payments | Banking Operations Specialist</strong></p>
-
-  <div class="badge">Eligible to Work in Finland</div>
-
-  <div class="contact">
-    <a href="mailto:ahmedishtiak293@gmail.com">📧</a>
-    <a href="tel:+358442469239" onclick="this.innerText='📞 +358 44 246 9239'">📞</a>
-    <a href="https://www.linkedin.com/in/ishtiak-ahmed-cdcs/" target="_blank">🔗</a>
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-brand">Ishtiak Ahmed</div>
+  <ul class="nav-links">
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#publications">Research</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
   </div>
+</nav>
 
-  <div class="download">
-    <a href="Ishtiak_Ahmed_CV.pdf" download>Download CV</a>
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#expertise" class="mobile-link">Expertise</a>
+  <a href="#experience" class="mobile-link">Experience</a>
+  <a href="#publications" class="mobile-link">Research</a>
+  <a href="#education" class="mobile-link">Education</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-eyebrow">
+        <span></span>
+        Trade Finance & Payments Professional
+      </div>
+
+      <h1>
+        Ishtiak<br><em>Ahmed</em>
+      </h1>
+
+      <p class="hero-title">CDCS® | VP – International Banking Operations | Helsinki Region</p>
+
+      <p class="hero-desc">
+        21 years building and leading high-stakes trade finance and payments operations at one of Bangladesh's
+        leading banks. Now in Finland, ready to bring that depth to Nordic financial institutions.
+      </p>
+
+      <div class="hero-tags">
+        <span class="hero-tag">SWIFT MT103 / MT202</span>
+        <span class="hero-tag">Documentary Credits</span>
+        <span class="hero-tag">Nostro Reconciliation</span>
+        <span class="hero-tag">TBML Compliance</span>
+        <span class="hero-tag">Temenos T24</span>
+        <span class="hero-tag">Incoterms 2020</span>
+      </div>
+
+      <div class="hero-actions">
+        <a href="Ishtiak_Ahmed_CV.pdf" download class="btn-primary">
+          ⬇ Download CV
+        </a>
+        <a href="#contact" class="btn-secondary">
+          Get in Touch →
+        </a>
+      </div>
+    </div>
+
+    <!-- PROFILE CARD -->
+    <div class="hero-card">
+      <div class="profile-card">
+        <div class="profile-img-wrap">
+          <!-- If profile.jpg is present it will load; otherwise shows initials -->
+          <img src="profile.jpg" alt="Ishtiak Ahmed"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="profile-placeholder" style="display:none;">IA</div>
+        </div>
+
+        <p class="profile-name">Ishtiak Ahmed</p>
+        <p class="profile-role">VP – International Banking Ops<br>Trade Finance Specialist</p>
+
+        <div class="cdcs-badge">🏅 CDCS® Certified</div><br>
+        <div class="work-badge">Open to Work · Finland</div>
+
+        <div class="social-row">
+          <a href="https://www.linkedin.com/in/ishtiak-ahmed-cdcs/" target="_blank"
+             class="social-btn" title="LinkedIn">🔗</a>
+          <a href="mailto:ahmedishtiak293@gmail.com" class="social-btn" title="Email">📧</a>
+          <a href="tel:+358442469239" class="social-btn" title="Phone">📞</a>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat">
+            <span class="stat-num">21+</span>
+            <span class="stat-label">Years Exp.</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">€1.5B</span>
+            <span class="stat-label">Annual Ops</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">100+</span>
+            <span class="stat-label">Trained</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- PROFILE -->
-<div class="section">
-<h2>Professional Profile</h2>
-<p>
-Banking and financial operations professional with over 20 years of experience in international trade finance, payments, and cross-border transaction management. Strong expertise in SWIFT operations, TBML, Nostro reconciliation, and regulatory compliance in high-volume environments.
-</p>
+<hr class="divider">
 
-<p>
-In addition, I have contributed to academic research on sustainability and economic development, with peer-reviewed and institutional publications, and have participated in international conferences focused on sustainable finance and regional development.
-</p>
+<!-- EXPERTISE -->
+<section class="expertise-section" id="expertise">
+  <div class="section">
+    <div class="reveal">
+      <div class="section-label"><span></span> Core Competencies</div>
+      <h2 class="section-title">Areas of Expertise</h2>
+      <p class="section-sub">Two decades of hands-on experience across every layer of trade finance and international payments.</p>
+    </div>
 
-<p>
-After completing my MBA in International Business Management in Finland, I am now focused on roles in payments, reconciliation, and trade finance within the Finnish banking and financial sector.
-</p>
-</div>
+    <div class="expertise-grid">
+      <div class="expertise-card reveal reveal-delay-1">
+        <div class="expertise-icon">🏦</div>
+        <h3>Trade Finance & Payments</h3>
+        <ul>
+          <li>Documentary Credits (LC)</li>
+          <li>SWIFT MT103 / MT202</li>
+          <li>International Payments</li>
+          <li>Nostro Reconciliation</li>
+          <li>Incoterms 2020</li>
+        </ul>
+      </div>
 
-<!-- CORE EXPERTISE -->
-<div class="section">
-<h2>Core Expertise</h2>
+      <div class="expertise-card reveal reveal-delay-2">
+        <div class="expertise-icon">🛡️</div>
+        <h3>Compliance & Risk</h3>
+        <ul>
+          <li>TBML Risk Identification</li>
+          <li>Regulatory Compliance</li>
+          <li>Transaction Monitoring</li>
+          <li>Audit Support</li>
+          <li>AML / KYC Frameworks</li>
+        </ul>
+      </div>
 
-<div class="grid">
+      <div class="expertise-card reveal reveal-delay-3">
+        <div class="expertise-icon">⚙️</div>
+        <h3>Operations Leadership</h3>
+        <ul>
+          <li>Process Improvement</li>
+          <li>Workflow Optimisation</li>
+          <li>Stakeholder Coordination</li>
+          <li>SLA Management</li>
+          <li>Team Leadership</li>
+        </ul>
+      </div>
 
-<div>
-<strong>Trade Finance & Payments</strong>
-<ul>
-<li>Documentary Credits (LC)</li>
-<li>SWIFT (MT103, MT202)</li>
-<li>International Payments</li>
-<li>Nostro Reconciliation</li>
-<li>Incoterms (2020)</li>
-</ul>
-</div>
+      <div class="expertise-card reveal reveal-delay-4">
+        <div class="expertise-icon">🖥️</div>
+        <h3>Systems & Tools</h3>
+        <ul>
+          <li>Temenos T24</li>
+          <li>SWIFT System</li>
+          <li>Advanced Excel</li>
+          <li>MS Office Suite</li>
+          <li>Trade Finance Platforms</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div>
-<strong>Compliance & Risk</strong>
-<ul>
-<li>Regulatory Compliance</li>
-<li>TBML Risk Identification</li>
-<li>Transaction Monitoring</li>
-<li>Audit Support</li>
-</ul>
-</div>
-
-<div>
-<strong>Operations</strong>
-<ul>
-<li>Process Improvement</li>
-<li>Workflow Optimization</li>
-<li>Stakeholder Coordination</li>
-<li>Team Leadership</li>
-</ul>
-</div>
-
-<div>
-<strong>Systems & Tools</strong>
-<ul>
-<li>Temenos T24</li>
-<li>SWIFT System</li>
-<li>Advanced Excel</li>
-<li>MS Office</li>
-</ul>
-</div>
-
-</div>
-</div>
+<hr class="divider">
 
 <!-- EXPERIENCE -->
-<div class="section">
-<h2>Professional Experience</h2>
+<section class="experience-section" id="experience">
+  <div class="section">
+    <div class="reveal">
+      <div class="section-label"><span></span> Career History</div>
+      <h2 class="section-title">Professional Experience</h2>
+      <p class="section-sub">A 21-year track record at one of Bangladesh's leading international banks — from management trainee to Vice President.</p>
+    </div>
 
-<strong>Vice President – International Banking Operations</strong><br>
-Export Import Bank of Bangladesh PLC | 2003 – 2024
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div class="timeline-role">Vice President – International Banking Operations</div>
+          <div class="timeline-date">📅 2003 – 2024</div>
+        </div>
+        <div class="timeline-org">Export Import Bank of Bangladesh PLC · Dhaka, Bangladesh</div>
+        <ul class="achievement-list">
+          <li>Managed trade finance and payment operations exceeding €1.5 billion annually</li>
+          <li>Processed high-volume SWIFT payments (MT103, MT202) with zero audit failures</li>
+          <li>Performed daily Nostro account reconciliation across correspondent banks</li>
+          <li>Maintained 100% audit compliance for 5 consecutive years</li>
+          <li>Identified and escalated TBML risks in line with FATF and ICC guidelines</li>
+          <li>Led and mentored a 10-member operations team, improving efficiency by 25%</li>
+          <li>Resolved 95%+ operational cases within agreed SLA timelines</li>
+          <li>Designed and delivered trade finance training to 100+ banking professionals</li>
+          <li>Served as Member Secretary, Central Customer Services & Complaint Management Cell</li>
+          <li>Core trainer at the EBTRA Banking Academy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-<ul>
-<li>Managed trade finance and payment operations exceeding €1.5 billion annually</li>
-<li>Processed SWIFT payments (MT103, MT202)</li>
-<li>Performed Nostro account reconciliation</li>
-<li>Ensured 100% audit compliance (5 consecutive years)</li>
-<li>Identified TBML risks</li>
-<li>Led a 10-member team and improved efficiency by 25%</li>
-<li>Resolved 95%+ operational cases within SLA</li>
-<li>Delivered training to 100+ professionals</li>
-</ul>
-
-</div>
-
-<!-- EDUCATION -->
-<div class="section">
-<h2>Education</h2>
-
-<p><strong>MBA – International Business Management</strong><br>
-JAMK University of Applied Sciences, Finland (2025)</p>
-
-<p><strong>MBA – Finance & Banking</strong><br>
-International Islamic University Chittagong (2007)</p>
-
-</div>
+<hr class="divider">
 
 <!-- PUBLICATIONS -->
-<div class="section">
-<h2>Publications</h2>
+<section class="publications-section" id="publications">
+  <div class="section">
+    <div class="reveal">
+      <div class="section-label"><span></span> Academic Work</div>
+      <h2 class="section-title">Publications & Research</h2>
+      <p class="section-sub">Peer-reviewed and institutional research on sustainable finance, economic development, and trade.</p>
+    </div>
 
-<ul>
-<li>
-Ahmed, I. (2025). <em>The impact of slowbalization on the sustainability of the ready-made garments industry in Bangladesh</em> 
-[Master’s thesis, JAMK University of Applied Sciences]. 
-<a class="link" href="https://www.theseus.fi/handle/10024/888174" target="_blank">Theseus</a>
-</li>
+    <div class="reveal reveal-delay-1">
+      <div class="pub-card">
+        <div class="pub-icon">📄</div>
+        <div class="pub-body">
+          <div class="pub-title">The impact of slowbalization on the sustainability of the ready-made garments industry in Bangladesh</div>
+          <div class="pub-meta">Ahmed, I. (2025) · Master's Thesis · JAMK University of Applied Sciences, Finland</div>
+          <a href="https://www.theseus.fi/handle/10024/888174" target="_blank" class="pub-link">
+            View on Theseus →
+          </a>
+        </div>
+      </div>
+    </div>
 
-<li>
-Ahmed, I., & Akpinar, M. (2025, October 2). 
-<em>India’s economic growth and sustainability challenges</em>. 
-<a class="link" href="https://verkkolehdet.jamk.fi/finnish-business-review/2025/10/02/indias-economic-growth-and-sustainability-challenges/" target="_blank">
-Finnish Business Review
-</a>
-</li>
-</ul>
+    <div class="reveal reveal-delay-2">
+      <div class="pub-card">
+        <div class="pub-icon">📰</div>
+        <div class="pub-body">
+          <div class="pub-title">India's economic growth and sustainability challenges</div>
+          <div class="pub-meta">Ahmed, I., & Akpinar, M. (2025, October 2) · Finnish Business Review</div>
+          <a href="https://verkkolehdet.jamk.fi/finnish-business-review/2025/10/02/indias-economic-growth-and-sustainability-challenges/"
+             target="_blank" class="pub-link">
+            Read in Finnish Business Review →
+          </a>
+        </div>
+      </div>
+    </div>
 
-</div>
+    <!-- CONFERENCES -->
+    <div class="reveal reveal-delay-3" style="margin-top: 40px;">
+      <div class="section-label" style="margin-bottom: 16px;"><span></span> Conferences</div>
+      <ul class="conf-list">
+        <li>
+          <div class="conf-year">2025</div>
+          <div>International Conference on Sustainable Business — Finland</div>
+        </li>
+        <li>
+          <div class="conf-year">2019</div>
+          <div>Asia-Pacific Conference on Trade Finance — UN ESCAP / ADB / ICC</div>
+        </li>
+        <li>
+          <div class="conf-year">2017</div>
+          <div>UN ESCAP Forum on Regional Integration — Asia-Pacific Region</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-<!-- CONFERENCES -->
-<div class="section">
-<h2>Professional Development & Conferences</h2>
+<hr class="divider">
 
-<ul>
-<li>International Conference on Sustainable Business – Finland (2025)</li>
-<li>Asia-Pacific Conference – UN ESCAP / ADB / ICC (2019)</li>
-<li>UN ESCAP Forum on Regional Integration (2017)</li>
-</ul>
+<!-- EDUCATION -->
+<section class="experience-section" id="education">
+  <div class="section">
+    <div class="reveal">
+      <div class="section-label"><span></span> Academic Background</div>
+      <h2 class="section-title">Education</h2>
+    </div>
 
-</div>
+    <div class="edu-grid" style="margin-bottom: 48px;">
+      <div class="edu-card reveal reveal-delay-1">
+        <div class="edu-year">2023 – 2025</div>
+        <div class="edu-degree">MBA – International Business Management</div>
+        <div class="edu-school">JAMK University of Applied Sciences · Jyväskylä, Finland</div>
+      </div>
+      <div class="edu-card reveal reveal-delay-2">
+        <div class="edu-year">2005 – 2007</div>
+        <div class="edu-degree">MBA – Finance & Banking</div>
+        <div class="edu-school">International Islamic University Chittagong · Bangladesh</div>
+      </div>
+    </div>
 
-<!-- CERTIFICATIONS -->
-<div class="section">
-<h2>Certifications</h2>
-<ul>
-<li>Certified Documentary Credit Specialist (CDCS®)</li>
-<li>Occupational Safety Card (Finland)</li>
-</ul>
-</div>
+    <!-- CERTS + LANGUAGES -->
+    <div class="certs-lang-grid">
+      <div>
+        <div class="section-label reveal" style="margin-bottom: 18px;"><span></span> Certifications</div>
+        <div class="cert-item reveal reveal-delay-1">
+          <div class="cert-icon">🏅</div>
+          <div>
+            <div class="cert-name">CDCS® — Certified Documentary Credit Specialist</div>
+            <div class="cert-body">International Chamber of Commerce (ICC)</div>
+          </div>
+        </div>
+        <div class="cert-item reveal reveal-delay-2">
+          <div class="cert-icon">🦺</div>
+          <div>
+            <div class="cert-name">Occupational Safety Card</div>
+            <div class="cert-body">Finland</div>
+          </div>
+        </div>
+      </div>
 
-<!-- LANGUAGES -->
-<div class="section">
-<h2>Languages</h2>
-<ul>
-<li>English – Fluent</li>
-<li>Bengali – Native</li>
-<li>Finnish – A2</li>
-</ul>
-</div>
+      <div>
+        <div class="section-label reveal" style="margin-bottom: 18px;"><span></span> Languages</div>
+        <div class="reveal reveal-delay-1">
+          <div class="lang-item">
+            <span class="lang-name">English</span>
+            <div class="lang-level">
+              <div class="lang-dots">
+                <div class="lang-dot filled"></div>
+                <div class="lang-dot filled"></div>
+                <div class="lang-dot filled"></div>
+                <div class="lang-dot filled"></div>
+                <div class="lang-dot filled"></div>
+              </div>
+              Fluent / C2
+            </div>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Bengali</span>
+            <div class="lang-level">
+              <div class="lang-dots">
+                <div class="lang-dot filled"></div>
+                <div class="lang-dot filled"></div>
+                <div class="lang-dot filled"></div>
+                <div class="lang-dot filled"></div>
+                <div class="lang-dot filled"></div>
+              </div>
+              Native
+            </div>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Finnish</span>
+            <div class="lang-level">
+              <div class="lang-dots">
+                <div class="lang-dot filled"></div>
+                <div class="lang-dot filled"></div>
+                <div class="lang-dot"></div>
+                <div class="lang-dot"></div>
+                <div class="lang-dot"></div>
+              </div>
+              A2 · In Progress
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- ADDITIONAL -->
-<div class="section">
-<h2>Additional Information</h2>
-<ul>
-<li>Based in Espoo, Finland</li>
-<li>Eligible to work in Finland</li>
-<li>Driving License</li>
-</ul>
-</div>
+<hr class="divider">
 
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section">
+    <div class="contact-grid">
+      <div class="contact-cta reveal">
+        <div class="section-label" style="margin-bottom: 14px;"><span></span> Get in Touch</div>
+        <h2>Let's start a conversation.</h2>
+        <p>
+          I'm actively looking for trade finance, payments, or banking operations roles in Helsinki, Espoo, or Vantaa.
+          Whether you have an opening or just want to talk shop — reach out.
+        </p>
+        <div class="hero-tags" style="margin-bottom: 0;">
+          <span class="hero-tag">📍 Espoo, Finland</span>
+          <span class="hero-tag">🇫🇮 Eligible to Work</span>
+          <span class="hero-tag">🚗 Driving Licence</span>
+        </div>
+      </div>
+
+      <div class="contact-details reveal reveal-delay-2">
+        <a href="mailto:ahmedishtiak293@gmail.com" class="contact-item">
+          <div class="contact-item-icon">📧</div>
+          <div class="contact-item-info">
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">ahmedishtiak293@gmail.com</div>
+          </div>
+          <div class="contact-item-arrow">→</div>
+        </a>
+
+        <a href="tel:+358442469239" class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div class="contact-item-info">
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-value">+358 44 246 9239</div>
+          </div>
+          <div class="contact-item-arrow">→</div>
+        </a>
+
+        <a href="https://www.linkedin.com/in/ishtiak-ahmed-cdcs/" target="_blank" class="contact-item">
+          <div class="contact-item-icon">🔗</div>
+          <div class="contact-item-info">
+            <div class="contact-item-label">LinkedIn</div>
+            <div class="contact-item-value">linkedin.com/in/ishtiak-ahmed-cdcs</div>
+          </div>
+          <div class="contact-item-arrow">→</div>
+        </a>
+
+        <a href="Ishtiak_Ahmed_CV.pdf" download class="contact-item">
+          <div class="contact-item-icon">📄</div>
+          <div class="contact-item-info">
+            <div class="contact-item-label">Curriculum Vitae</div>
+            <div class="contact-item-value">Download PDF</div>
+          </div>
+          <div class="contact-item-arrow">⬇</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Ishtiak Ahmed</div>
+    <div class="footer-copy">© 2025 · Espoo, Finland · CDCS®</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/ishtiak-ahmed-cdcs/" target="_blank">LinkedIn</a>
+      <a href="mailto:ahmedishtiak293@gmail.com">Email</a>
+      <a href="Ishtiak_Ahmed_CV.pdf" download>CV</a>
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script>
+// ── NAV SCROLL EFFECT ──
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+  document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 300);
+});
+
+// ── HAMBURGER ──
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+let menuOpen = false;
+
+hamburger.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  mobileNav.classList.toggle('open', menuOpen);
+  document.body.style.overflow = menuOpen ? 'hidden' : '';
+});
+
+document.querySelectorAll('.mobile-link').forEach(link => {
+  link.addEventListener('click', () => {
+    menuOpen = false;
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// ── SCROLL REVEAL ──
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+reveals.forEach(el => observer.observe(el));
+
+// ── BACK TO TOP ──
+document.getElementById('backToTop').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ── ACTIVE NAV LINK ON SCROLL ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        link.style.color = link.getAttribute('href') === `#${id}` ? 'var(--gold)' : '';
+      });
+    }
+  });
+}, { threshold: 0.4 });
+
+sections.forEach(s => sectionObserver.observe(s));
+
+// ── PROFILE IMAGE FALLBACK ──
+// Already handled inline with onerror above
+</script>
 </body>
 </html>
