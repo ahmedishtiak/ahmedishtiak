@@ -14,16 +14,16 @@
 <style>
 /* ─── VARIABLES ─── */
 :root {
-  --navy:      #0b1c2e;
-  --navy-mid:  #112236;
-  --navy-light:#1a3352;
-  --gold:      #c9a84c;
-  --gold-light:#e8c96d;
-  --off-white: #f0ece4;
-  --text:      #d4cfc6;
-  --text-dim:  #8899aa;
-  --accent:    #4fa3d4;
-  --border:    rgba(201,168,76,0.18);
+  --navy:      #091e37;        /* deep blue – primary background   */
+  --navy-mid:  #0c2a4a;        /* mid blue  – alternate sections   */
+  --navy-light:#1b4678;        /* light blue – hover / card bg     */
+  --gold:      #f0c030;        /* yellow    – primary highlight    */
+  --gold-light:#f7d96a;        /* yellow light – hover state       */
+  --off-white: #f3ede0;        /* beige     – headings / off-white */
+  --text:      #c6d8ea;        /* soft blue-white body text        */
+  --text-dim:  #7896b4;        /* muted blue-grey secondary text   */
+  --accent:    #0ea5b0;        /* teal blue – links / accents      */
+  --border:    rgba(14,165,176,0.22);  /* teal border                */
   --radius:    10px;
   --shadow:    0 8px 32px rgba(0,0,0,0.35);
   --font-head: 'Playfair Display', serif;
@@ -53,6 +53,7 @@ img { max-width: 100%; display: block; }
 /* ─── SCROLLBAR ─── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--navy); }
+
 ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
 
 /* ─── NOISE TEXTURE OVERLAY ─── */
@@ -76,7 +77,7 @@ nav {
   justify-content: space-between;
   padding: 0 40px;
   height: 64px;
-  background: rgba(11,28,46,0.85);
+  background: rgba(9,30,55,0.87);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   transition: var(--transition);
@@ -84,7 +85,7 @@ nav {
 
 nav.scrolled {
   height: 56px;
-  background: rgba(11,28,46,0.97);
+  background: rgba(9,30,55,0.98);
 }
 
 .nav-brand {
@@ -156,7 +157,7 @@ nav.scrolled {
   position: fixed;
   inset: 0;
   top: 64px;
-  background: rgba(11,28,46,0.98);
+  background: rgba(9,30,55,0.99);
   z-index: 999;
   flex-direction: column;
   align-items: center;
@@ -189,17 +190,17 @@ nav.scrolled {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 60% at 80% 50%, rgba(201,168,76,0.07) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 80% at 10% 80%, rgba(79,163,212,0.06) 0%, transparent 60%),
-    linear-gradient(165deg, #0b1c2e 0%, #0d2340 50%, #0b1c2e 100%);
+    radial-gradient(ellipse 70% 60% at 80% 50%, rgba(240,192,48,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 10% 80%, rgba(14,165,176,0.09) 0%, transparent 60%),
+    linear-gradient(165deg, #091e37 0%, #0c2a4a 50%, #091e37 100%);
 }
 
 .hero-grid-lines {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    linear-gradient(rgba(14,165,176,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14,165,176,0.06) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
@@ -1148,8 +1149,8 @@ footer {
   flex-shrink: 0;
 }
 
-.badge-thesis     { background: rgba(79,163,212,0.12); border: 1px solid rgba(79,163,212,0.3);  color: #4fa3d4; }
-.badge-article    { background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3);  color: var(--gold); }
+.badge-thesis     { background: rgba(14,165,176,0.12); border: 1px solid rgba(14,165,176,0.32);  color: var(--accent); }
+.badge-article    { background: rgba(240,192,48,0.12); border: 1px solid rgba(240,192,48,0.32);  color: var(--gold); }
 .badge-report     { background: rgba(39,174,96,0.12);  border: 1px solid rgba(39,174,96,0.3);   color: #4ade80; }
 .badge-post       { background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.3);  color: #c084fc; }
 .badge-conference { background: rgba(251,146,60,0.12); border: 1px solid rgba(251,146,60,0.3);  color: #fb923c; }
@@ -1284,7 +1285,7 @@ footer {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(5,14,24,0.92);
+  background: rgba(4,16,32,0.93);
   backdrop-filter: blur(10px);
   z-index: 2000;
   display: flex;
@@ -1453,6 +1454,7 @@ footer {
 <nav id="mainNav">
   <div class="nav-brand">Ishtiak Ahmed</div>
   <ul class="nav-links">
+    <li><a href="https://ahmedishtiak.com">Home</a></li>
     <li><a href="#expertise">Expertise</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#publications">Research</a></li>
@@ -1467,6 +1469,7 @@ footer {
 
 <!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
+  <a href="https://ahmedishtiak.com" class="mobile-link">Home</a>
   <a href="#expertise" class="mobile-link">Expertise</a>
   <a href="#experience" class="mobile-link">Experience</a>
   <a href="#publications" class="mobile-link">Research</a>
@@ -2153,7 +2156,7 @@ const sectionObserver = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       const id = entry.target.id;
       navLinks.forEach(link => {
-        link.style.color = link.getAttribute('href') === `#${id}` ? 'var(--gold)' : '';
+        link.style.color = link.getAttribute('href') === `#${id}` ? 'var(--accent)' : '';
       });
     }
   });
