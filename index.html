@@ -218,7 +218,7 @@ nav.scrolled {
 .hero-text { max-width: 640px; }
 
 .hero-eyebrow {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 10px;
   font-size: 12px;
@@ -227,13 +227,20 @@ nav.scrolled {
   text-transform: uppercase;
   color: var(--gold);
   margin-bottom: 20px;
+  flex-wrap: nowrap;
 }
 
-.hero-eyebrow span {
+.hero-eyebrow span:first-child {
   display: inline-block;
   width: 32px;
+  min-width: 32px;
   height: 1px;
   background: var(--gold);
+  flex-shrink: 0;
+}
+
+.hero-eyebrow span:last-child {
+  white-space: nowrap;
 }
 
 .hero h1 {
@@ -520,7 +527,7 @@ nav.scrolled {
 }
 
 .section-label {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 10px;
   font-size: 11px;
@@ -529,13 +536,20 @@ nav.scrolled {
   text-transform: uppercase;
   color: var(--gold);
   margin-bottom: 14px;
+  flex-wrap: nowrap;
 }
 
-.section-label span {
+.section-label span:first-child {
   display: inline-block;
   width: 28px;
+  min-width: 28px;
   height: 1px;
   background: var(--gold);
+  flex-shrink: 0;
+}
+
+.section-label span:last-child {
+  white-space: nowrap;
 }
 
 .section-title {
@@ -2378,11 +2392,11 @@ sections.forEach(s => sectionObserver.observe(s));
 // ══════════════════════════════════════════════════════════════
 
 // ┌─────────────────────────────────────────────────────────────┐
-// │  STEP 1: Replace ahmedishtiak with your Substack handle.   │
+// │  STEP 1: Replace YOUR-USERNAME with your Substack handle.   │
 // │  Example: if your blog is ishtiak.substack.com              │
 // │  set SUBSTACK_USERNAME = 'ishtiak'                          │
 // └─────────────────────────────────────────────────────────────┘
-const SUBSTACK_USERNAME = 'ahmedishtiak'; // ← CHANGE THIS
+const SUBSTACK_USERNAME = 'YOUR-USERNAME'; // ← CHANGE THIS
 
 const SUBSTACK_URL   = `https://${SUBSTACK_USERNAME}.substack.com`;
 const SUBSTACK_FEED  = `${SUBSTACK_URL}/feed`;
@@ -2440,7 +2454,7 @@ function renderBlogCard(post, i) {
 // ── Main fetch function ──
 async function fetchSubstackPosts() {
   // If username not set, show "not configured" state
-  if (SUBSTACK_USERNAME === 'ahmedishtiak') {
+  if (SUBSTACK_USERNAME === 'YOUR-USERNAME') {
     blogSkeletons.style.display = 'none';
     blogStatus.style.display    = 'flex';
     const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
