@@ -1155,6 +1155,131 @@ footer {
 .badge-post       { background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.3);  color: #c084fc; }
 .badge-conference { background: rgba(251,146,60,0.12); border: 1px solid rgba(251,146,60,0.3);  color: #fb923c; }
 .badge-other      { background: rgba(156,163,175,0.12);border: 1px solid rgba(156,163,175,0.3); color: #9ca3af; }
+.badge-blog       { background: rgba(255,106,71,0.12); border: 1px solid rgba(255,106,71,0.35); color: #ff6a47; }
+
+/* ─── SUBSTACK BLOG FEED ─── */
+.blog-feed-wrap {
+  margin-top: 60px;
+}
+
+.blog-feed-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.blog-feed-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.substack-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #ff6a47, #ff8c42);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(255,106,71,0.3);
+}
+
+.blog-feed-title {
+  font-family: var(--font-head);
+  font-size: 18px;
+  color: var(--off-white);
+}
+
+.blog-feed-sub {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.btn-substack {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ff6a47, #ff8c42);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  transition: all var(--transition);
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.btn-substack:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255,106,71,0.4);
+}
+
+/* Skeleton loading */
+.blog-skeletons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.blog-skeleton-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: skeletonPulse 1.6s ease-in-out infinite;
+}
+
+.skel {
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+}
+.skel-badge { width: 70px; height: 22px; }
+.skel-title-1 { width: 90%; height: 14px; }
+.skel-title-2 { width: 65%; height: 14px; }
+.skel-line { width: 100%; height: 11px; }
+.skel-line-sm { width: 75%; height: 11px; }
+.skel-btn { width: 100%; height: 36px; border-radius: 6px; margin-top: 8px; }
+
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
+/* Blog status message */
+.blog-status {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-dim);
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.blog-status a {
+  color: #ff6a47;
+  text-decoration: underline;
+}
+
+.blog-status-icon { font-size: 28px; }
 
 .writing-year {
   font-size: 11px;
@@ -1420,6 +1545,48 @@ footer {
 
 .modal-ext-btn:hover { background: var(--gold-light); }
 
+/* ─── LANGUAGE SWITCHER ─── */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 3px;
+}
+
+.lang-btn {
+  padding: 4px 9px;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  transition: all var(--transition);
+  line-height: 1;
+}
+
+.lang-btn.active {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.lang-btn:hover:not(.active) {
+  color: var(--off-white);
+  background: rgba(255,255,255,0.08);
+}
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 900px) {
   nav { padding: 0 24px; }
@@ -1454,28 +1621,35 @@ footer {
 <nav id="mainNav">
   <div class="nav-brand">Ishtiak Ahmed</div>
   <ul class="nav-links">
-    <li><a href="https://ahmedishtiak.com">Home</a></li>
-    <li><a href="#expertise">Expertise</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#publications">Research</a></li>
-    <li><a href="#writings">Writings</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#contact" class="nav-cta">Contact</a></li>
+    <li><a href="https://ahmedishtiak.com" data-i18n="nav_home">Home</a></li>
+    <li><a href="#expertise" data-i18n="nav_expertise">Expertise</a></li>
+    <li><a href="#experience" data-i18n="nav_experience">Experience</a></li>
+    <li><a href="#publications" data-i18n="nav_research">Research</a></li>
+    <li><a href="#writings" data-i18n="nav_writings">Writings</a></li>
+    <li><a href="#education" data-i18n="nav_education">Education</a></li>
+    <li><a href="#contact" class="nav-cta" data-i18n="nav_contact">Contact</a></li>
   </ul>
-  <div class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
+  <div class="nav-right">
+    <div class="lang-switcher" id="langSwitcher">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="fi">FI</button>
+      <button class="lang-btn" data-lang="sv">SV</button>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
 
 <!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
-  <a href="https://ahmedishtiak.com" class="mobile-link">Home</a>
-  <a href="#expertise" class="mobile-link">Expertise</a>
-  <a href="#experience" class="mobile-link">Experience</a>
-  <a href="#publications" class="mobile-link">Research</a>
-  <a href="#writings" class="mobile-link">Writings</a>
-  <a href="#education" class="mobile-link">Education</a>
-  <a href="#contact" class="mobile-link">Contact</a>
+  <a href="https://ahmedishtiak.com" class="mobile-link" data-i18n="nav_home">Home</a>
+  <a href="#expertise" class="mobile-link" data-i18n="nav_expertise">Expertise</a>
+  <a href="#experience" class="mobile-link" data-i18n="nav_experience">Experience</a>
+  <a href="#publications" class="mobile-link" data-i18n="nav_research">Research</a>
+  <a href="#writings" class="mobile-link" data-i18n="nav_writings">Writings</a>
+  <a href="#education" class="mobile-link" data-i18n="nav_education">Education</a>
+  <a href="#contact" class="mobile-link" data-i18n="nav_contact">Contact</a>
 </div>
 
 <!-- HERO -->
@@ -1487,16 +1661,16 @@ footer {
     <div class="hero-text">
       <div class="hero-eyebrow">
         <span></span>
-        Trade Finance & Payments Professional
+        <span data-i18n="hero_eyebrow">Trade Finance & Payments Professional</span>
       </div>
 
       <h1>
         Ishtiak<br><em>Ahmed</em>
       </h1>
 
-      <p class="hero-title">CDCS® | VP – International Banking Operations | Uusimaa Region</p>
+      <p class="hero-title" data-i18n="hero_title">CDCS® | VP – International Banking Operations | Uusimaa Region</p>
 
-      <p class="hero-desc">
+      <p class="hero-desc" data-i18n="hero_desc">
         21 years building and leading high-stakes trade finance and payments operations at one of Bangladesh's
         leading banks. Now in Finland, ready to bring that depth to Nordic financial institutions.
       </p>
@@ -1512,10 +1686,10 @@ footer {
 
       <div class="hero-actions">
         <a href="Ishtiak_Ahmed_CV.pdf" download class="btn-primary">
-          ⬇ Download CV
+          ⬇ <span data-i18n="btn_cv">Download CV</span>
         </a>
         <a href="#contact" class="btn-secondary">
-          Get in Touch →
+          <span data-i18n="btn_contact">Get in Touch</span> →
         </a>
       </div>
     </div>
@@ -1531,10 +1705,10 @@ footer {
         </div>
 
         <p class="profile-name">Ishtiak Ahmed</p>
-        <p class="profile-role">VP – International Banking Ops<br>Trade Finance Specialist</p>
+        <p class="profile-role" data-i18n="profile_role">VP – International Banking Ops<br>Trade Finance Specialist</p>
 
         <div class="cdcs-badge">🏅 CDCS® Certified</div><br>
-        <div class="work-badge">Open to Work · Finland</div>
+        <div class="work-badge" data-i18n="work_badge">Open to Work · Finland</div>
 
         <div class="social-row">
           <a href="https://www.linkedin.com/in/ishtiak-ahmed-cdcs/" target="_blank"
@@ -1546,15 +1720,15 @@ footer {
         <div class="stats-row">
           <div class="stat">
             <span class="stat-num">21+</span>
-            <span class="stat-label">Years Exp.</span>
+            <span class="stat-label" data-i18n="stat_years">Years Exp.</span>
           </div>
           <div class="stat">
             <span class="stat-num">€1.5B</span>
-            <span class="stat-label">Annual Ops</span>
+            <span class="stat-label" data-i18n="stat_ops">Annual Ops</span>
           </div>
           <div class="stat">
             <span class="stat-num">100+</span>
-            <span class="stat-label">Trained</span>
+            <span class="stat-label" data-i18n="stat_trained">Trained</span>
           </div>
         </div>
       </div>
@@ -1568,15 +1742,15 @@ footer {
 <section class="expertise-section" id="expertise">
   <div class="section">
     <div class="reveal">
-      <div class="section-label"><span></span> Core Competencies</div>
-      <h2 class="section-title">Areas of Expertise</h2>
-      <p class="section-sub">Two decades of hands-on experience across every layer of trade finance and international payments.</p>
+      <div class="section-label"><span></span> <span data-i18n="exp_label">Core Competencies</span></div>
+      <h2 class="section-title" data-i18n="exp_title">Areas of Expertise</h2>
+      <p class="section-sub" data-i18n="exp_sub">Two decades of hands-on experience across every layer of trade finance and international payments.</p>
     </div>
 
     <div class="expertise-grid">
       <div class="expertise-card reveal reveal-delay-1">
         <div class="expertise-icon">🏦</div>
-        <h3>Trade Finance & Payments</h3>
+        <h3 data-i18n="card_trade_title">Trade Finance & Payments</h3>
         <ul>
           <li>Documentary Credits (LC)</li>
           <li>SWIFT MT103 / MT202</li>
@@ -1588,7 +1762,7 @@ footer {
 
       <div class="expertise-card reveal reveal-delay-2">
         <div class="expertise-icon">🛡️</div>
-        <h3>Compliance & Risk</h3>
+        <h3 data-i18n="card_comp_title">Compliance & Risk</h3>
         <ul>
           <li>TBML Risk Identification</li>
           <li>Regulatory Compliance</li>
@@ -1600,25 +1774,25 @@ footer {
 
       <div class="expertise-card reveal reveal-delay-3">
         <div class="expertise-icon">⚙️</div>
-        <h3>Operations Leadership</h3>
+        <h3 data-i18n="card_ops_title">Operations Leadership</h3>
         <ul>
-          <li>Process Improvement</li>
-          <li>Workflow Optimisation</li>
-          <li>Stakeholder Coordination</li>
+          <li data-i18n="ops_li1">Process Improvement</li>
+          <li data-i18n="ops_li2">Workflow Optimisation</li>
+          <li data-i18n="ops_li3">Stakeholder Coordination</li>
           <li>SLA Management</li>
-          <li>Team Leadership</li>
+          <li data-i18n="ops_li5">Team Leadership</li>
         </ul>
       </div>
 
       <div class="expertise-card reveal reveal-delay-4">
         <div class="expertise-icon">🖥️</div>
-        <h3>Systems & Tools</h3>
+        <h3 data-i18n="card_sys_title">Systems & Tools</h3>
         <ul>
           <li>Temenos T24</li>
           <li>SWIFT System</li>
           <li>Advanced Excel</li>
           <li>MS Office Suite</li>
-          <li>Trade Finance Platforms</li>
+          <li data-i18n="sys_li5">Trade Finance Platforms</li>
         </ul>
       </div>
     </div>
@@ -1631,30 +1805,30 @@ footer {
 <section class="experience-section" id="experience">
   <div class="section">
     <div class="reveal">
-      <div class="section-label"><span></span> Career History</div>
-      <h2 class="section-title">Professional Experience</h2>
-      <p class="section-sub">A 21-year track record at one of Bangladesh's leading international banks — from management trainee to Vice President.</p>
+      <div class="section-label"><span></span> <span data-i18n="career_label">Career History</span></div>
+      <h2 class="section-title" data-i18n="career_title">Professional Experience</h2>
+      <p class="section-sub" data-i18n="career_sub">A 21-year track record at one of Bangladesh's leading international banks — from management trainee to Vice President.</p>
     </div>
 
     <div class="timeline">
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="timeline-header">
-          <div class="timeline-role">Vice President – International Banking Operations</div>
+          <div class="timeline-role" data-i18n="role_vp">Vice President – International Banking Operations</div>
           <div class="timeline-date">📅 2003 – 2024</div>
         </div>
-        <div class="timeline-org">Export Import Bank of Bangladesh PLC · Dhaka, Bangladesh</div>
+        <div class="timeline-org" data-i18n="role_org">Export Import Bank of Bangladesh PLC · Dhaka, Bangladesh</div>
         <ul class="achievement-list">
-          <li>Managed trade finance and payment operations exceeding €1.5 billion annually</li>
-          <li>Processed high-volume SWIFT payments (MT103, MT202) with zero audit failures</li>
-          <li>Performed daily Nostro account reconciliation across correspondent banks</li>
-          <li>Maintained 100% audit compliance for 5 consecutive years</li>
-          <li>Identified and escalated TBML risks in line with FATF and ICC guidelines</li>
-          <li>Led and mentored a 10-member operations team, improving efficiency by 25%</li>
-          <li>Resolved 95%+ operational cases within agreed SLA timelines</li>
-          <li>Designed and delivered trade finance training to 100+ banking professionals</li>
-          <li>Served as Member Secretary, Central Customer Services & Complaint Management Cell</li>
-          <li>Core trainer at the EBTRA Banking Academy</li>
+          <li data-i18n="ach1">Managed trade finance and payment operations exceeding €1.5 billion annually</li>
+          <li data-i18n="ach2">Processed high-volume SWIFT payments (MT103, MT202) with zero audit failures</li>
+          <li data-i18n="ach3">Performed daily Nostro account reconciliation across correspondent banks</li>
+          <li data-i18n="ach4">Maintained 100% audit compliance for 5 consecutive years</li>
+          <li data-i18n="ach5">Identified and escalated TBML risks in line with FATF and ICC guidelines</li>
+          <li data-i18n="ach6">Led and mentored a 10-member operations team, improving efficiency by 25%</li>
+          <li data-i18n="ach7">Resolved 95%+ operational cases within agreed SLA timelines</li>
+          <li data-i18n="ach8">Designed and delivered trade finance training to 100+ banking professionals</li>
+          <li data-i18n="ach9">Served as Member Secretary, Central Customer Services & Complaint Management Cell</li>
+          <li data-i18n="ach10">Core trainer at the EBTRA Banking Academy</li>
         </ul>
       </div>
     </div>
@@ -1667,9 +1841,9 @@ footer {
 <section class="publications-section" id="publications">
   <div class="section">
     <div class="reveal">
-      <div class="section-label"><span></span> Academic Work</div>
-      <h2 class="section-title">Publications & Research</h2>
-      <p class="section-sub">Peer-reviewed and institutional research on sustainable finance, economic development, and trade.</p>
+      <div class="section-label"><span></span> <span data-i18n="pub_label">Academic Work</span></div>
+      <h2 class="section-title" data-i18n="pub_title">Publications & Research</h2>
+      <p class="section-sub" data-i18n="pub_sub">Peer-reviewed and institutional research on sustainable finance, economic development, and trade.</p>
     </div>
 
     <div class="reveal reveal-delay-1">
@@ -1677,9 +1851,9 @@ footer {
         <div class="pub-icon">📄</div>
         <div class="pub-body">
           <div class="pub-title">The impact of slowbalization on the sustainability of the ready-made garments industry in Bangladesh</div>
-          <div class="pub-meta">Ahmed, I. (2025) · Master's Thesis · JAMK University of Applied Sciences, Finland</div>
+          <div class="pub-meta">Ahmed, I. (2025) · <span data-i18n="pub1_type">Master's Thesis</span> · JAMK University of Applied Sciences, Finland</div>
           <a href="https://www.theseus.fi/handle/10024/888174" target="_blank" class="pub-link">
-            View on Theseus →
+            <span data-i18n="pub1_link">View on Theseus</span> →
           </a>
         </div>
       </div>
@@ -1693,7 +1867,7 @@ footer {
           <div class="pub-meta">Ahmed, I., & Akpinar, M. (2025, October 2) · Finnish Business Review</div>
           <a href="https://verkkolehdet.jamk.fi/finnish-business-review/2025/10/02/indias-economic-growth-and-sustainability-challenges/"
              target="_blank" class="pub-link">
-            Read in Finnish Business Review →
+            <span data-i18n="pub2_link">Read in Finnish Business Review</span> →
           </a>
         </div>
       </div>
@@ -1701,19 +1875,19 @@ footer {
 
     <!-- CONFERENCES -->
     <div class="reveal reveal-delay-3" style="margin-top: 40px;">
-      <div class="section-label" style="margin-bottom: 16px;"><span></span> Conferences</div>
+      <div class="section-label" style="margin-bottom: 16px;"><span></span> <span data-i18n="conf_label">Conferences</span></div>
       <ul class="conf-list">
         <li>
           <div class="conf-year">2025</div>
-          <div>International Conference on Sustainable Business — Finland</div>
+          <div data-i18n="conf1">International Conference on Sustainable Business — Finland</div>
         </li>
         <li>
           <div class="conf-year">2019</div>
-          <div>Asia-Pacific Conference on Trade Finance — UN ESCAP / ADB / ICC</div>
+          <div data-i18n="conf2">Asia-Pacific Conference on Trade Finance — UN ESCAP / ADB / ICC</div>
         </li>
         <li>
           <div class="conf-year">2017</div>
-          <div>UN ESCAP Forum on Regional Integration — Asia-Pacific Region</div>
+          <div data-i18n="conf3">UN ESCAP Forum on Regional Integration — Asia-Pacific Region</div>
         </li>
       </ul>
     </div>
@@ -1726,9 +1900,9 @@ footer {
 <section class="writings-section" id="writings">
   <div class="section">
     <div class="reveal">
-      <div class="section-label"><span></span> Knowledge Hub</div>
-      <h2 class="section-title">Writings & Articles</h2>
-      <p class="section-sub">Research papers, trade finance articles, professional insights, and everything I've put to paper — all in one place.</p>
+      <div class="section-label"><span></span> <span data-i18n="wr_label">Knowledge Hub</span></div>
+      <h2 class="section-title" data-i18n="wr_title">Writings & Articles</h2>
+      <p class="section-sub" data-i18n="wr_sub">Research papers, trade finance articles, professional insights, and everything I've put to paper — all in one place.</p>
     </div>
 
     <div class="filter-bar reveal" id="filterBar">
@@ -1737,6 +1911,38 @@ footer {
 
     <div class="writings-grid reveal" id="writingsGrid">
       <!-- Rendered by JS -->
+    </div>
+
+    <!-- ── SUBSTACK BLOG FEED ── -->
+    <div class="blog-feed-wrap reveal" id="blogFeedWrap">
+      <div class="blog-feed-header">
+        <div class="blog-feed-header-left">
+          <div class="substack-icon">✍️</div>
+          <div>
+            <div class="blog-feed-title" data-i18n="blog_section_title">From My Blog</div>
+            <div class="blog-feed-sub" data-i18n="blog_section_sub">Latest posts from Substack — updated automatically</div>
+          </div>
+        </div>
+        <a id="substackSubscribeBtn" href="#" target="_blank" class="btn-substack">
+          📬 <span data-i18n="blog_subscribe">Subscribe on Substack</span>
+        </a>
+      </div>
+
+      <!-- Loading skeletons shown while fetching -->
+      <div class="blog-skeletons" id="blogSkeletons">
+        <div class="blog-skeleton-card"><div class="skel skel-badge"></div><div class="skel skel-title-1"></div><div class="skel skel-title-2"></div><div class="skel skel-line"></div><div class="skel skel-line-sm"></div><div class="skel skel-btn"></div></div>
+        <div class="blog-skeleton-card"><div class="skel skel-badge"></div><div class="skel skel-title-1"></div><div class="skel skel-title-2"></div><div class="skel skel-line"></div><div class="skel skel-line-sm"></div><div class="skel skel-btn"></div></div>
+        <div class="blog-skeleton-card"><div class="skel skel-badge"></div><div class="skel skel-title-1"></div><div class="skel skel-title-2"></div><div class="skel skel-line"></div><div class="skel skel-line-sm"></div><div class="skel skel-btn"></div></div>
+      </div>
+
+      <!-- Blog posts grid rendered here -->
+      <div class="writings-grid" id="blogGrid" style="display:none;"></div>
+
+      <!-- Error / empty state -->
+      <div class="blog-status" id="blogStatus" style="display:none;">
+        <span class="blog-status-icon">📭</span>
+        <span id="blogStatusMsg" data-i18n="blog_not_configured">Blog not connected yet — check back soon.</span>
+      </div>
     </div>
 
 </section>
@@ -1767,19 +1973,19 @@ footer {
 <section class="experience-section" id="education">
   <div class="section">
     <div class="reveal">
-      <div class="section-label"><span></span> Academic Background</div>
-      <h2 class="section-title">Education</h2>
+      <div class="section-label"><span></span> <span data-i18n="edu_label">Academic Background</span></div>
+      <h2 class="section-title" data-i18n="edu_title">Education</h2>
     </div>
 
     <div class="edu-grid" style="margin-bottom: 48px;">
       <div class="edu-card reveal reveal-delay-1">
         <div class="edu-year">2023 – 2025</div>
-        <div class="edu-degree">MBA – International Business Management</div>
+        <div class="edu-degree" data-i18n="edu1_deg">MBA – International Business Management</div>
         <div class="edu-school">JAMK University of Applied Sciences · Jyväskylä, Finland</div>
       </div>
       <div class="edu-card reveal reveal-delay-2">
         <div class="edu-year">2005 – 2007</div>
-        <div class="edu-degree">MBA – Finance & Banking</div>
+        <div class="edu-degree" data-i18n="edu2_deg">MBA – Finance & Banking</div>
         <div class="edu-school">International Islamic University Chittagong · Bangladesh</div>
       </div>
     </div>
@@ -1787,28 +1993,28 @@ footer {
     <!-- CERTS + LANGUAGES -->
     <div class="certs-lang-grid">
       <div>
-        <div class="section-label reveal" style="margin-bottom: 18px;"><span></span> Certifications</div>
+        <div class="section-label reveal" style="margin-bottom: 18px;"><span></span> <span data-i18n="cert_label">Certifications</span></div>
         <div class="cert-item reveal reveal-delay-1">
           <div class="cert-icon">🏅</div>
           <div>
-            <div class="cert-name">CDCS® — Certified Documentary Credit Specialist</div>
+            <div class="cert-name" data-i18n="cert1_name">CDCS® — Certified Documentary Credit Specialist</div>
             <div class="cert-body">International Chamber of Commerce (ICC)</div>
           </div>
         </div>
         <div class="cert-item reveal reveal-delay-2">
           <div class="cert-icon">🦺</div>
           <div>
-            <div class="cert-name">Occupational Safety Card</div>
-            <div class="cert-body">Finland</div>
+            <div class="cert-name" data-i18n="cert2_name">Occupational Safety Card</div>
+            <div class="cert-body" data-i18n="cert2_body">Finland</div>
           </div>
         </div>
       </div>
 
       <div>
-        <div class="section-label reveal" style="margin-bottom: 18px;"><span></span> Languages</div>
+        <div class="section-label reveal" style="margin-bottom: 18px;"><span></span> <span data-i18n="lang_label">Languages</span></div>
         <div class="reveal reveal-delay-1">
           <div class="lang-item">
-            <span class="lang-name">English</span>
+            <span class="lang-name" data-i18n="lng1_name">English</span>
             <div class="lang-level">
               <div class="lang-dots">
                 <div class="lang-dot filled"></div>
@@ -1817,11 +2023,11 @@ footer {
                 <div class="lang-dot filled"></div>
                 <div class="lang-dot filled"></div>
               </div>
-              Fluent / C2
+              <span data-i18n="lng1_level">Fluent / C2</span>
             </div>
           </div>
           <div class="lang-item">
-            <span class="lang-name">Bengali</span>
+            <span class="lang-name" data-i18n="lng2_name">Bengali</span>
             <div class="lang-level">
               <div class="lang-dots">
                 <div class="lang-dot filled"></div>
@@ -1830,11 +2036,11 @@ footer {
                 <div class="lang-dot filled"></div>
                 <div class="lang-dot filled"></div>
               </div>
-              Native
+              <span data-i18n="lng2_level">Native</span>
             </div>
           </div>
           <div class="lang-item">
-            <span class="lang-name">Finnish</span>
+            <span class="lang-name" data-i18n="lng3_name">Finnish</span>
             <div class="lang-level">
               <div class="lang-dots">
                 <div class="lang-dot filled"></div>
@@ -1843,7 +2049,7 @@ footer {
                 <div class="lang-dot"></div>
                 <div class="lang-dot"></div>
               </div>
-              A2 · In Progress
+              <span data-i18n="lng3_level">A2 · In Progress</span>
             </div>
           </div>
         </div>
@@ -1875,7 +2081,7 @@ footer {
         <a href="mailto:ahmedishtiak293@gmail.com" class="contact-item">
           <div class="contact-item-icon">📧</div>
           <div class="contact-item-info">
-            <div class="contact-item-label">Email</div>
+            <div class="contact-item-label" data-i18n="ci_email">Email</div>
             <div class="contact-item-value">ahmedishtiak293@gmail.com</div>
           </div>
           <div class="contact-item-arrow">→</div>
@@ -1884,7 +2090,7 @@ footer {
         <a href="tel:+358442469239" class="contact-item">
           <div class="contact-item-icon">📞</div>
           <div class="contact-item-info">
-            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-label" data-i18n="ci_phone">Phone</div>
             <div class="contact-item-value">+358 44 246 9239</div>
           </div>
           <div class="contact-item-arrow">→</div>
@@ -1902,8 +2108,8 @@ footer {
         <a href="Ishtiak_Ahmed_CV.pdf" download class="contact-item">
           <div class="contact-item-icon">📄</div>
           <div class="contact-item-info">
-            <div class="contact-item-label">Curriculum Vitae</div>
-            <div class="contact-item-value">Download PDF</div>
+            <div class="contact-item-label" data-i18n="ci_cv_label">Curriculum Vitae</div>
+            <div class="contact-item-value" data-i18n="ci_cv_val">Download PDF</div>
           </div>
           <div class="contact-item-arrow">⬇</div>
         </a>
@@ -1916,7 +2122,7 @@ footer {
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">Ishtiak Ahmed</div>
-    <div class="footer-copy">© 2025 · Espoo, Finland · CDCS®</div>
+    <div class="footer-copy" data-i18n="footer_copy">© 2025 · Espoo, Finland · CDCS®</div>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/ishtiak-ahmed-cdcs/" target="_blank">LinkedIn</a>
       <a href="mailto:ahmedishtiak293@gmail.com">Email</a>
@@ -2028,6 +2234,7 @@ const TYPE_CONFIG = {
   Report:     { badge: 'badge-report',     icon: '📊' },
   Post:       { badge: 'badge-post',       icon: '✍️' },
   Conference: { badge: 'badge-conference', icon: '🎤' },
+  Blog:       { badge: 'badge-blog',       icon: '✍️' },
   Other:      { badge: 'badge-other',      icon: '📄' }
 };
 
@@ -2165,6 +2372,382 @@ sections.forEach(s => sectionObserver.observe(s));
 
 // ── PROFILE IMAGE FALLBACK ──
 // Already handled inline with onerror above
+
+// ══════════════════════════════════════════════════════════════
+// ── SUBSTACK BLOG FEED ──
+// ══════════════════════════════════════════════════════════════
+
+// ┌─────────────────────────────────────────────────────────────┐
+// │  STEP 1: Replace ahmedishtiak with your Substack handle.   │
+// │  Example: if your blog is ishtiak.substack.com              │
+// │  set SUBSTACK_USERNAME = 'ishtiak'                          │
+// └─────────────────────────────────────────────────────────────┘
+const SUBSTACK_USERNAME = 'ahmedishtiak'; // ← CHANGE THIS
+
+const SUBSTACK_URL   = `https://${SUBSTACK_USERNAME}.substack.com`;
+const SUBSTACK_FEED  = `${SUBSTACK_URL}/feed`;
+const RSS2JSON_API   = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(SUBSTACK_FEED)}&count=6`;
+
+const blogSkeletons  = document.getElementById('blogSkeletons');
+const blogGrid       = document.getElementById('blogGrid');
+const blogStatus     = document.getElementById('blogStatus');
+const blogStatusMsg  = document.getElementById('blogStatusMsg');
+const subscribeBtn   = document.getElementById('substackSubscribeBtn');
+
+// Point the Subscribe button to your Substack
+subscribeBtn.href = SUBSTACK_URL;
+
+// ── Strip HTML tags from RSS description/content ──
+function stripHtml(html) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html || '';
+  return (tmp.textContent || tmp.innerText || '').trim().replace(/\s+/g, ' ');
+}
+
+// ── Format ISO date to "Apr 2025" style ──
+function fmtDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  if (isNaN(d)) return '';
+  return d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+}
+
+// ── Render a single blog card ──
+function renderBlogCard(post, i) {
+  const cfg     = TYPE_CONFIG.Blog;
+  const excerpt = stripHtml(post.description || post.content || '').slice(0, 180) + '…';
+  const dateStr = fmtDate(post.pubDate);
+
+  return `
+    <div class="writing-card reveal reveal-delay-${(i % 4) + 1}" style="cursor:default;">
+      <div class="writing-card-top">
+        <span class="writing-type-badge ${cfg.badge}">${cfg.icon} Blog</span>
+        <span class="writing-year">${dateStr}</span>
+      </div>
+      <div class="writing-title">${post.title || 'Untitled Post'}</div>
+      <div class="writing-venue" style="color:#ff6a47;">Substack</div>
+      ${excerpt ? `<div class="writing-excerpt">${excerpt}</div>` : ''}
+      <div class="writing-actions">
+        <a href="${post.link}" target="_blank" rel="noopener" class="writing-btn writing-btn-read"
+           style="text-decoration:none; justify-content:center;">
+          <span data-i18n="blog_read_btn">Read on Substack →</span>
+        </a>
+      </div>
+    </div>
+  `;
+}
+
+// ── Main fetch function ──
+async function fetchSubstackPosts() {
+  // If username not set, show "not configured" state
+  if (SUBSTACK_USERNAME === 'ahmedishtiak') {
+    blogSkeletons.style.display = 'none';
+    blogStatus.style.display    = 'flex';
+    const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+    blogStatusMsg.textContent   = t.blog_not_configured || 'Blog not connected yet — check back soon.';
+    return;
+  }
+
+  try {
+    const res  = await fetch(RSS2JSON_API);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    if (data.status !== 'ok' || !data.items || !data.items.length) {
+      throw new Error('No posts found');
+    }
+
+    // Render posts
+    blogSkeletons.style.display = 'none';
+    blogGrid.style.display      = 'grid';
+    blogGrid.innerHTML = data.items.map((post, i) => renderBlogCard(post, i)).join('');
+
+    // Re-observe new cards for scroll reveal
+    blogGrid.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+
+    // Re-apply translations to any data-i18n inside blog cards
+    const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+    blogGrid.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key]) el.textContent = t[key];
+    });
+
+  } catch (err) {
+    blogSkeletons.style.display = 'none';
+    blogStatus.style.display    = 'flex';
+    const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+    blogStatusMsg.innerHTML = (t.blog_error || 'Could not load posts.') +
+      ` <a href="${SUBSTACK_URL}" target="_blank" rel="noopener">Visit Substack →</a>`;
+    console.warn('[Substack Feed]', err.message);
+  }
+}
+
+// Run the fetch on page load
+fetchSubstackPosts();
+
+// ══════════════════════════════════════════════════════════════
+const TRANSLATIONS = {
+  en: {
+    // Nav
+    nav_home: 'Home', nav_expertise: 'Expertise', nav_experience: 'Experience',
+    nav_research: 'Research', nav_writings: 'Writings', nav_education: 'Education',
+    nav_contact: 'Contact',
+    // Hero
+    hero_eyebrow: 'Trade Finance & Payments Professional',
+    hero_title: 'CDCS® | VP – International Banking Operations | Uusimaa Region',
+    hero_desc: '21 years building and leading high-stakes trade finance and payments operations at one of Bangladesh\'s leading banks. Now in Finland, ready to bring that depth to Nordic financial institutions.',
+    btn_cv: 'Download CV', btn_contact: 'Get in Touch',
+    profile_role: 'VP – International Banking Ops<br>Trade Finance Specialist',
+    work_badge: 'Open to Work · Finland',
+    stat_years: 'Years Exp.', stat_ops: 'Annual Ops', stat_trained: 'Trained',
+    // Expertise
+    exp_label: 'Core Competencies', exp_title: 'Areas of Expertise',
+    exp_sub: 'Two decades of hands-on experience across every layer of trade finance and international payments.',
+    card_trade_title: 'Trade Finance & Payments', card_comp_title: 'Compliance & Risk',
+    card_ops_title: 'Operations Leadership', card_sys_title: 'Systems & Tools',
+    ops_li1: 'Process Improvement', ops_li2: 'Workflow Optimisation',
+    ops_li3: 'Stakeholder Coordination', ops_li5: 'Team Leadership',
+    sys_li5: 'Trade Finance Platforms',
+    // Experience
+    career_label: 'Career History', career_title: 'Professional Experience',
+    career_sub: 'A 21-year track record at one of Bangladesh\'s leading international banks — from management trainee to Vice President.',
+    role_vp: 'Vice President – International Banking Operations',
+    role_org: 'Export Import Bank of Bangladesh PLC · Dhaka, Bangladesh',
+    ach1: 'Managed trade finance and payment operations exceeding €1.5 billion annually',
+    ach2: 'Processed high-volume SWIFT payments (MT103, MT202) with zero audit failures',
+    ach3: 'Performed daily Nostro account reconciliation across correspondent banks',
+    ach4: 'Maintained 100% audit compliance for 5 consecutive years',
+    ach5: 'Identified and escalated TBML risks in line with FATF and ICC guidelines',
+    ach6: 'Led and mentored a 10-member operations team, improving efficiency by 25%',
+    ach7: 'Resolved 95%+ operational cases within agreed SLA timelines',
+    ach8: 'Designed and delivered trade finance training to 100+ banking professionals',
+    ach9: 'Served as Member Secretary, Central Customer Services & Complaint Management Cell',
+    ach10: 'Core trainer at the EBTRA Banking Academy',
+    // Publications
+    pub_label: 'Academic Work', pub_title: 'Publications & Research',
+    pub_sub: 'Peer-reviewed and institutional research on sustainable finance, economic development, and trade.',
+    pub1_type: 'Master\'s Thesis', pub1_link: 'View on Theseus', pub2_link: 'Read in Finnish Business Review',
+    conf_label: 'Conferences',
+    conf1: 'International Conference on Sustainable Business — Finland',
+    conf2: 'Asia-Pacific Conference on Trade Finance — UN ESCAP / ADB / ICC',
+    conf3: 'UN ESCAP Forum on Regional Integration — Asia-Pacific Region',
+    // Writings
+    wr_label: 'Knowledge Hub', wr_title: 'Writings & Articles',
+    wr_sub: 'Research papers, trade finance articles, professional insights, and everything I\'ve put to paper — all in one place.',
+    // Education
+    edu_label: 'Academic Background', edu_title: 'Education',
+    edu1_deg: 'MBA – International Business Management', edu2_deg: 'MBA – Finance & Banking',
+    cert_label: 'Certifications',
+    cert1_name: 'CDCS® — Certified Documentary Credit Specialist',
+    cert2_name: 'Occupational Safety Card', cert2_body: 'Finland',
+    lang_label: 'Languages',
+    lng1_name: 'English', lng1_level: 'Fluent / C2',
+    lng2_name: 'Bengali', lng2_level: 'Native',
+    lng3_name: 'Finnish', lng3_level: 'A2 · In Progress',
+    // Contact
+    contact_label: 'Get in Touch', contact_h2: 'Let\'s start a conversation.',
+    contact_p: 'I\'m currently looking for roles in trade finance, payments, or banking operations in Helsinki, Espoo, and Vantaa. If there\'s an opportunity—or even just a chance to exchange ideas—I\'d be glad to connect.',
+    tag_eligible: '🇫🇮 Eligible to Work', tag_driving: '🚗 Driving Licence',
+    ci_email: 'Email', ci_phone: 'Phone', ci_cv_label: 'Curriculum Vitae', ci_cv_val: 'Download PDF',
+    footer_copy: '© 2025 · Espoo, Finland · CDCS®',
+    // Blog feed
+    blog_section_title: 'From My Blog',
+    blog_section_sub: 'Latest posts from Substack — updated automatically',
+    blog_subscribe: 'Subscribe on Substack',
+    blog_read_btn: 'Read on Substack →',
+    blog_not_configured: 'Blog not connected yet — check back soon.',
+    blog_error: 'Could not load posts right now.',
+  },
+
+  fi: {
+    // Nav
+    nav_home: 'Etusivu', nav_expertise: 'Osaaminen', nav_experience: 'Kokemus',
+    nav_research: 'Tutkimus', nav_writings: 'Kirjoitukset', nav_education: 'Koulutus',
+    nav_contact: 'Yhteystiedot',
+    // Hero
+    hero_eyebrow: 'Kaupparahoitus- ja maksuasiantuntija',
+    hero_title: 'CDCS® | VP – Kansainväliset pankkioperaatiot | Uudenmaan alue',
+    hero_desc: '21 vuotta kansainvälisten kaupparahoitus- ja maksuoperaatioiden johtamista Bangladeshin johtavassa pankissa. Nyt Suomessa – valmis tuomaan syvän asiantuntemuksensa pohjoismaisiin rahoituslaitoksiin.',
+    btn_cv: 'Lataa CV', btn_contact: 'Ota yhteyttä',
+    profile_role: 'VP – Kansainväliset pankkioperaatiot<br>Kaupparahoitusasiantuntija',
+    work_badge: 'Avoin työpaikalle · Suomi',
+    stat_years: 'Vuotta kokemusta', stat_ops: 'Vuosittaiset operaatiot', stat_trained: 'Koulutettuja',
+    // Expertise
+    exp_label: 'Ydinosaaminen', exp_title: 'Asiantuntemusalueet',
+    exp_sub: 'Kahden vuosikymmenen käytännön kokemus kaupparahoituksen ja kansainvälisten maksujen kaikilta osa-alueilta.',
+    card_trade_title: 'Kaupparahoitus ja maksut', card_comp_title: 'Vaatimustenmukaisuus ja riskienhallinta',
+    card_ops_title: 'Operatiivinen johtajuus', card_sys_title: 'Järjestelmät ja työkalut',
+    ops_li1: 'Prosessien kehittäminen', ops_li2: 'Työnkulun optimointi',
+    ops_li3: 'Sidosryhmäyhteistyö', ops_li5: 'Tiimin johtaminen',
+    sys_li5: 'Kaupparahoitusalustat',
+    // Experience
+    career_label: 'Työhistoria', career_title: 'Työkokemus',
+    career_sub: '21 vuoden ura Bangladeshin johtavassa kansainvälisessä pankissa – trainee-ohjelmasta varatoimitusjohtajaksi.',
+    role_vp: 'Varajohtaja – Kansainväliset pankkioperaatiot',
+    role_org: 'Export Import Bank of Bangladesh PLC · Dhaka, Bangladesh',
+    ach1: 'Hallitsi yli 1,5 miljardin euron vuotuisia kaupparahoitus- ja maksuoperaatioita',
+    ach2: 'Käsitteli suuren volyymin SWIFT-maksuja (MT103, MT202) ilman yhtään auditointivirhettä',
+    ach3: 'Suoritti päivittäisen Nostro-tilin täsmäytyksen kirjeenvaihtopankkien välillä',
+    ach4: 'Ylläpiti 100 %:n auditointinoudatusta viiden peräkkäisen vuoden ajan',
+    ach5: 'Tunnisti ja raportoi TBML-riskejä FATF:n ja ICC:n ohjeiden mukaisesti',
+    ach6: 'Johti ja mentoroi 10 hengen operatiivista tiimiä, parantaen tehokkuutta 25 %',
+    ach7: 'Ratkaisi yli 95 % operatiivisista tapauksista sovittujen SLA-aikataulujen puitteissa',
+    ach8: 'Suunnitteli ja toteutti kaupparahoituskoulutuksia yli 100 pankkialan ammattilaiselle',
+    ach9: 'Toimi sihteerinä asiakaspalvelu- ja valitusten hallintakeskuksessa',
+    ach10: 'Keskeinen kouluttaja EBTRA-pankkiakatemiassa',
+    // Publications
+    pub_label: 'Akateeminen työ', pub_title: 'Julkaisut ja tutkimus',
+    pub_sub: 'Vertaisarvioitu ja institutionaalinen tutkimus kestävästä rahoituksesta, taloudellisesta kehityksestä ja kaupasta.',
+    pub1_type: 'Pro gradu -tutkielma', pub1_link: 'Katso Theseuksessa', pub2_link: 'Lue Finnish Business Review -lehdessä',
+    conf_label: 'Konferenssit',
+    conf1: 'Kansainvälinen kestävän liiketoiminnan konferenssi — Suomi',
+    conf2: 'Aasian ja Tyynenmeren kaupparahoituskonferenssi — UN ESCAP / ADB / ICC',
+    conf3: 'UN ESCAP -foorumi alueellisesta integraatiosta — Aasian ja Tyynenmeren alue',
+    // Writings
+    wr_label: 'Tietokeskus', wr_title: 'Kirjoitukset ja artikkelit',
+    wr_sub: 'Tutkimuspapereita, kaupparahoitusartikkeleita, ammatillisia näkemyksiä ja kaikkea muuta kirjoittamaani – kaikki yhdessä paikassa.',
+    // Education
+    edu_label: 'Akateeminen tausta', edu_title: 'Koulutus',
+    edu1_deg: 'MBA – Kansainvälinen liiketoiminnan johtaminen', edu2_deg: 'MBA – Rahoitus ja pankkitoiminta',
+    cert_label: 'Sertifikaatit',
+    cert1_name: 'CDCS® — Sertifioitu remburssispesialisti',
+    cert2_name: 'Työturvallisuuskortti', cert2_body: 'Suomi',
+    lang_label: 'Kielet',
+    lng1_name: 'Englanti', lng1_level: 'Sujuva / C2',
+    lng2_name: 'Bengali', lng2_level: 'Äidinkieli',
+    lng3_name: 'Suomi', lng3_level: 'A2 · Opiskelu käynnissä',
+    // Contact
+    contact_label: 'Ota yhteyttä', contact_h2: 'Aloitetaan keskustelu.',
+    contact_p: 'Etsin tällä hetkellä töitä kaupparahoituksen, maksujen tai pankkioperaatioiden parissa Helsingistä, Espoosta tai Vantaalta. Jos sinulla on tarjolla mahdollisuus – tai edes tilaisuus vaihtaa ajatuksia – otan mielelläni yhteyttä.',
+    tag_eligible: '🇫🇮 Työlupa Suomessa', tag_driving: '🚗 Ajokortti',
+    ci_email: 'Sähköposti', ci_phone: 'Puhelin', ci_cv_label: 'Ansioluettelo', ci_cv_val: 'Lataa PDF',
+    footer_copy: '© 2025 · Espoo, Suomi · CDCS®',
+    // Blog feed
+    blog_section_title: 'Blogistani',
+    blog_section_sub: 'Uusimmat kirjoitukset Substackista — päivittyy automaattisesti',
+    blog_subscribe: 'Tilaa Substackissa',
+    blog_read_btn: 'Lue Substackissa →',
+    blog_not_configured: 'Blogia ei ole vielä yhdistetty — tule pian takaisin.',
+    blog_error: 'Kirjoitusten lataaminen epäonnistui.',
+  },
+
+  sv: {
+    // Nav
+    nav_home: 'Hem', nav_expertise: 'Kompetens', nav_experience: 'Erfarenhet',
+    nav_research: 'Forskning', nav_writings: 'Skrifter', nav_education: 'Utbildning',
+    nav_contact: 'Kontakt',
+    // Hero
+    hero_eyebrow: 'Specialist inom handelsfinansiering och betalningar',
+    hero_title: 'CDCS® | VP – Internationell bankverksamhet | Nyland',
+    hero_desc: '21 år av uppbyggnad och ledning av avancerade handelsfinansieringsoperationer vid en av Bangladeshs ledande banker. Nu i Finland – redo att bidra med denna kompetens till nordiska finansinstitut.',
+    btn_cv: 'Ladda ned CV', btn_contact: 'Kontakta mig',
+    profile_role: 'VP – Internationell bankverksamhet<br>Specialist inom handelsfinansiering',
+    work_badge: 'Öppen för arbete · Finland',
+    stat_years: 'Års erfarenhet', stat_ops: 'Årliga operationer', stat_trained: 'Utbildade',
+    // Expertise
+    exp_label: 'Kärnkompetens', exp_title: 'Expertisområden',
+    exp_sub: 'Två decenniers praktisk erfarenhet inom alla delar av handelsfinansiering och internationella betalningar.',
+    card_trade_title: 'Handelsfinansiering och betalningar', card_comp_title: 'Compliance och riskhantering',
+    card_ops_title: 'Operativt ledarskap', card_sys_title: 'System och verktyg',
+    ops_li1: 'Processförbättring', ops_li2: 'Arbetsflödesoptimering',
+    ops_li3: 'Intressentsamordning', ops_li5: 'Teamledarskap',
+    sys_li5: 'Handelsfinansieringsplattformar',
+    // Experience
+    career_label: 'Karriärhistorik', career_title: 'Yrkeserfarenhet',
+    career_sub: '21 år vid en av Bangladeshs ledande internationella banker – från trainee till vice verkställande direktör.',
+    role_vp: 'Vice verkställande direktör – Internationell bankverksamhet',
+    role_org: 'Export Import Bank of Bangladesh PLC · Dhaka, Bangladesh',
+    ach1: 'Hanterade handelsfinansieringsoperationer på över 1,5 miljarder euro årligen',
+    ach2: 'Behandlade SWIFT-betalningar (MT103, MT202) i stor volym utan revisionsavvikelser',
+    ach3: 'Utförde daglig Nostro-kontoavstämning med korrespondentbanker',
+    ach4: 'Upprätthöll 100 % revisionsefterlevnad under 5 år i följd',
+    ach5: 'Identifierade och eskalerade TBML-risker i enlighet med FATF och ICC',
+    ach6: 'Ledde och mentorerade ett operativt team på 10 personer, ökade effektiviteten med 25 %',
+    ach7: 'Löste 95 %+ av operativa ärenden inom avtalade SLA-tider',
+    ach8: 'Utformade och genomförde handelsfinansieringsutbildningar för 100+ bankproffs',
+    ach9: 'Tjänstgjorde som sekreterare i central kundtjänst och klagomålshanteringscell',
+    ach10: 'Kärntrainerare vid EBTRA Banking Academy',
+    // Publications
+    pub_label: 'Akademiskt arbete', pub_title: 'Publikationer och forskning',
+    pub_sub: 'Kollegialt granskad och institutionell forskning om hållbar finansiering, ekonomisk utveckling och handel.',
+    pub1_type: 'Masteruppsats', pub1_link: 'Visa på Theseus', pub2_link: 'Läs i Finnish Business Review',
+    conf_label: 'Konferenser',
+    conf1: 'Internationell konferens om hållbart näringsliv — Finland',
+    conf2: 'Asien-Stillahavskonferens om handelsfinansiering — UN ESCAP / ADB / ICC',
+    conf3: 'UN ESCAP-forum om regional integration — Asien-Stillahavsregionen',
+    // Writings
+    wr_label: 'Kunskapshubb', wr_title: 'Skrifter och artiklar',
+    wr_sub: 'Forskningsrapporter, handelsfinansieringsartiklar, professionella insikter och allt jag satt på pränt – samlat på ett ställe.',
+    // Education
+    edu_label: 'Akademisk bakgrund', edu_title: 'Utbildning',
+    edu1_deg: 'MBA – Internationell företagsledning', edu2_deg: 'MBA – Finans och bankverksamhet',
+    cert_label: 'Certifieringar',
+    cert1_name: 'CDCS® — Certifierad dokumentärkreditspecialist',
+    cert2_name: 'Arbetstillståndskort', cert2_body: 'Finland',
+    lang_label: 'Språk',
+    lng1_name: 'Engelska', lng1_level: 'Flytande / C2',
+    lng2_name: 'Bengali', lng2_level: 'Modersmål',
+    lng3_name: 'Finska', lng3_level: 'A2 · Under inlärning',
+    // Contact
+    contact_label: 'Ta kontakt', contact_h2: 'Låt oss starta en konversation.',
+    contact_p: 'Jag söker för närvarande tjänster inom handelsfinansiering, betalningar eller bankoperationer i Helsingfors, Esbo och Vanda. Om det finns en möjlighet – eller ens ett tillfälle att utbyta idéer – tar jag gärna kontakt.',
+    tag_eligible: '🇫🇮 Arbetsberättigad', tag_driving: '🚗 Körkort',
+    ci_email: 'E-post', ci_phone: 'Telefon', ci_cv_label: 'Curriculum Vitae', ci_cv_val: 'Ladda ned PDF',
+    footer_copy: '© 2025 · Esbo, Finland · CDCS®',
+    // Blog feed
+    blog_section_title: 'Från min blogg',
+    blog_section_sub: 'Senaste inlägg från Substack — uppdateras automatiskt',
+    blog_subscribe: 'Prenumerera på Substack',
+    blog_read_btn: 'Läs på Substack →',
+    blog_not_configured: 'Bloggen är inte ansluten än — kom tillbaka snart.',
+    blog_error: 'Kunde inte ladda inlägg just nu.',
+  }
+};
+
+let currentLang = 'en';
+
+function applyLanguage(lang) {
+  if (!TRANSLATIONS[lang]) return;
+  currentLang = lang;
+  const t = TRANSLATIONS[lang];
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) {
+      el.innerHTML = t[key];
+    }
+  });
+
+  // Refresh blog status message text if visible
+  if (blogStatus && blogStatus.style.display !== 'none' && blogStatusMsg) {
+    const isError = blogStatusMsg.innerHTML.includes('Visit Substack');
+    if (!isError) {
+      blogStatusMsg.textContent = t.blog_not_configured || 'Blog not connected yet — check back soon.';
+    }
+  }
+
+  // Update html lang attribute
+  document.documentElement.lang = lang;
+
+  // Update active button state
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  // Persist preference
+  try { localStorage.setItem('preferredLang', lang); } catch(e) {}
+}
+
+// Wire up buttons
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+});
+
+// Restore saved preference on load
+try {
+  const saved = localStorage.getItem('preferredLang');
+  if (saved && TRANSLATIONS[saved]) applyLanguage(saved);
+} catch(e) {}
 </script>
 </body>
 </html>
