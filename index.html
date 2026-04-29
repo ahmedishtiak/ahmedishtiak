@@ -2392,15 +2392,16 @@ sections.forEach(s => sectionObserver.observe(s));
 // ══════════════════════════════════════════════════════════════
 
 const SUBSTACK_USERNAME = 'ahmedishtiak';
+const SUBSTACK_URL      = `https://${SUBSTACK_USERNAME}.substack.com`;
+const SUBSTACK_API      = `${SUBSTACK_URL}/api/v1/posts?limit=6&offset=0`;
+// allorigins wraps the response to bypass CORS
+const PROXY_URL         = `https://api.allorigins.win/get?url=${encodeURIComponent(SUBSTACK_API)}`;
 
-const SUBSTACK_URL  = `https://${SUBSTACK_USERNAME}.substack.com`;
-const SUBSTACK_API  = `${SUBSTACK_URL}/api/v1/posts?limit=6&offset=0`;
-
-const blogSkeletons  = document.getElementById('blogSkeletons');
-const blogGrid       = document.getElementById('blogGrid');
-const blogStatus     = document.getElementById('blogStatus');
-const blogStatusMsg  = document.getElementById('blogStatusMsg');
-const subscribeBtn   = document.getElementById('substackSubscribeBtn');
+const blogSkeletons = document.getElementById('blogSkeletons');
+const blogGrid      = document.getElementById('blogGrid');
+const blogStatus    = document.getElementById('blogStatus');
+const blogStatusMsg = document.getElementById('blogStatusMsg');
+const subscribeBtn  = document.getElementById('substackSubscribeBtn');
 
 subscribeBtn.href = SUBSTACK_URL;
 
@@ -2414,9 +2415,10 @@ function fmtDate(dateStr) {
 function renderBlogCard(post, i) {
   const cfg     = TYPE_CONFIG.Blog;
   const title   = post.title || post.name || 'Untitled Post';
-  const excerpt = (post.subtitle || post.description || '').slice(0, 180) + (post.subtitle?.length > 180 ? '…' : '');
+  const excerpt = post.subtitle || post.description || '';
+  const trimmed = excerpt.length > 180 ? excerpt.slice(0, 180) + '…' : excerpt;
   const dateStr = fmtDate(post.post_date || post.published_at);
-  const link    = post.canonical_url || `${SUBSTACK_URL}/p/${post.slug}`;
+  const link    = post.canonical_url || `${SUBSTACK_URL}/p/${post.slug || ''}`;
 
   return `
     <div class="writing-card reveal reveal-delay-${(i % 4) + 1}">
@@ -2426,55 +2428,76 @@ function renderBlogCard(post, i) {
       </div>
       <div class="writing-title">${title}</div>
       <div class="writing-venue" style="color:#ff6a47;">Substack</div>
-      ${excerpt ? `<div class="writing-excerpt">${excerpt}</div>` : ''}
+      ${trimmed ? `<div class="writing-excerpt">${trimmed}</div>` : ''}
       <div class="writing-actions">
-        <a href="${link}" target="_blank" rel="noopener" class="writing-btn writing-btn-read"
+        <a href="${link}" target="_blank" rel="noopener"
+           class="writing-btn writing-btn-read"
            style="text-decoration:none; justify-content:center;">
           <span data-i18n="blog_read_btn">Read on Substack →</span>
         </a>
       </div>
-    </div>
-  `;
+    </div>`;
+}
+
+function showPosts(posts) {
+  blogSkeletons.style.display = 'none';
+  blogGrid.style.display      = 'grid';
+  blogGrid.innerHTML = posts.map((p, i) => renderBlogCard(p, i)).join('');
+  blogGrid.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+  blogGrid.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) el.innerHTML = t[key];
+  });
+}
+
+function showEmpty() {
+  blogSkeletons.style.display = 'none';
+  blogStatus.style.display    = 'flex';
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+  blogStatusMsg.innerHTML =
+    (t.blog_not_configured || 'No posts yet — check back soon.') +
+    ` <a href="${SUBSTACK_URL}" target="_blank" rel="noopener" style="color:#ff6a47;">Visit Substack →</a>`;
+}
+
+function showError(err) {
+  blogSkeletons.style.display = 'none';
+  blogStatus.style.display    = 'flex';
+  blogStatusMsg.innerHTML =
+    `Could not load posts. <a href="${SUBSTACK_URL}" target="_blank" rel="noopener" style="color:#ff6a47;">Visit Substack →</a>`;
+  console.warn('[Substack Feed]', err);
+}
+
+async function tryFetch(url, parseAsProxy) {
+  const res = await fetch(url, { cache: 'no-cache' });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  if (parseAsProxy) {
+    const wrapper = await res.json();
+    if (!wrapper.contents) throw new Error('Empty proxy response');
+    return JSON.parse(wrapper.contents);
+  }
+  return res.json();
 }
 
 async function fetchSubstackPosts() {
+  let posts = null;
+
+  // Strategy 1 — allorigins proxy (bypasses CORS)
   try {
-    const res = await fetch(SUBSTACK_API);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const posts = await res.json();
-
-    if (!Array.isArray(posts) || posts.length === 0) {
-      // No posts yet — show friendly empty state
-      blogSkeletons.style.display = 'none';
-      blogStatus.style.display    = 'flex';
-      const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
-      blogStatusMsg.textContent   = t.blog_not_configured || 'Blog not connected yet — check back soon.';
-      return;
+    posts = await tryFetch(PROXY_URL, true);
+  } catch (e1) {
+    console.warn('[Substack] Proxy failed, trying direct…', e1.message);
+    // Strategy 2 — direct fetch (works if Substack relaxes CORS)
+    try {
+      posts = await tryFetch(SUBSTACK_API, false);
+    } catch (e2) {
+      console.warn('[Substack] Direct fetch also failed.', e2.message);
     }
-
-    blogSkeletons.style.display = 'none';
-    blogGrid.style.display      = 'grid';
-    blogGrid.innerHTML = posts.map((post, i) => renderBlogCard(post, i)).join('');
-
-    // Re-observe for scroll reveal
-    blogGrid.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
-
-    // Apply current language translations
-    const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
-    blogGrid.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (t[key]) el.innerHTML = t[key];
-    });
-
-  } catch (err) {
-    blogSkeletons.style.display = 'none';
-    blogStatus.style.display    = 'flex';
-    const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
-    blogStatusMsg.innerHTML =
-      (t.blog_error || 'Could not load posts right now.') +
-      ` <a href="${SUBSTACK_URL}" target="_blank" rel="noopener">Visit Substack →</a>`;
-    console.warn('[Substack Feed]', err.message);
   }
+
+  if (!posts) { showError('All fetch strategies failed'); return; }
+  if (!Array.isArray(posts) || posts.length === 0) { showEmpty(); return; }
+  showPosts(posts);
 }
 
 fetchSubstackPosts();
