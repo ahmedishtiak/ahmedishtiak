@@ -1621,11 +1621,54 @@ footer {
 }
 
 @media (max-width: 600px) {
+  /* prevent any content bleeding off screen */
+  body { overflow-x: hidden; }
+
   .writings-grid { grid-template-columns: 1fr; }
   .modal { max-height: 95vh; }
   .modal-iframe { min-height: 380px; }
   .hero-actions { flex-direction: column; }
   .btn-primary, .btn-secondary { justify-content: center; }
+
+  /* Hero eyebrow — allow wrapping on narrow screens */
+  .hero-eyebrow { flex-wrap: wrap; }
+  .hero-eyebrow span:last-child {
+    white-space: normal;
+    word-break: break-word;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+
+  /* Hero title paragraph — prevent horizontal overflow */
+  .hero-title {
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  /* Hero desc */
+  .hero-desc {
+    font-size: 14px;
+  }
+
+  /* Section labels — allow wrap */
+  .section-label { flex-wrap: wrap; }
+  .section-label span:last-child {
+    white-space: normal;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+
+  /* Lang switcher — tighter on very small screens */
+  .lang-switcher { gap: 1px; padding: 2px; }
+  .lang-btn { padding: 4px 7px; font-size: 10px; }
+  .nav-brand { font-size: 15px; }
+
+  /* Blog subscribe button wraps neatly */
+  .blog-feed-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .btn-substack { align-self: stretch; justify-content: center; }
 }
 </style>
 </head>
