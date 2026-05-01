@@ -1559,7 +1559,166 @@ footer {
 
 .modal-ext-btn:hover { background: var(--gold-light); }
 
-/* ─── LANGUAGE SWITCHER ─── */
+/* ─── CERTIFICATIONS SECTION ─── */
+.cert-section-bg { background: var(--navy-mid, #0f1e35); }
+
+.cert-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
+  margin-top: 10px;
+}
+
+.cert-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.cert-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201,168,76,0.4);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+}
+
+.cert-card-bar {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--accent));
+}
+
+.cert-card-bar.training  { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+.cert-card-bar.workshop  { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+.cert-card-bar.seminar   { background: linear-gradient(90deg, #10b981, #34d399); }
+.cert-card-bar.cert      { background: linear-gradient(90deg, var(--gold), #e2b44b); }
+
+.cert-card-body {
+  padding: 22px 22px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+}
+
+.cert-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cert-type-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.cert-type-badge.training  { background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.3); color: #60a5fa; }
+.cert-type-badge.workshop  { background: rgba(139,92,246,0.12); border: 1px solid rgba(139,92,246,0.3); color: #a78bfa; }
+.cert-type-badge.seminar   { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); color: #34d399; }
+.cert-type-badge.cert      { background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); color: var(--gold); }
+
+.cert-card-year {
+  font-size: 12px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.cert-card-title {
+  font-family: var(--font-head);
+  font-size: 15px;
+  color: var(--off-white);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.cert-card-issuer {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.cert-card-id {
+  font-size: 11px;
+  color: var(--text-dim);
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}
+
+.cert-card-footer {
+  padding: 0 22px 18px;
+}
+
+.cert-view-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.cert-view-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201,168,76,0.06);
+}
+
+.cert-view-btn.no-file {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Filter tabs — reuse writings filter style */
+.cert-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.cert-filter-btn {
+  padding: 7px 18px;
+  border-radius: 30px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  letter-spacing: 0.3px;
+}
+
+.cert-filter-btn:hover,
+.cert-filter-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+}
+
+/* ─── END CERTIFICATIONS ─── */
 .nav-right {
   display: flex;
   align-items: center;
@@ -1684,6 +1843,7 @@ footer {
     <li><a href="#publications" data-i18n="nav_research">Research</a></li>
     <li><a href="#writings" data-i18n="nav_writings">Writings</a></li>
     <li><a href="#education" data-i18n="nav_education">Education</a></li>
+    <li><a href="#certifications" data-i18n="nav_certs">Certifications</a></li>
     <li><a href="#contact" class="nav-cta" data-i18n="nav_contact">Contact</a></li>
   </ul>
   <div class="nav-right">
@@ -1706,6 +1866,7 @@ footer {
   <a href="#publications" class="mobile-link" data-i18n="nav_research">Research</a>
   <a href="#writings" class="mobile-link" data-i18n="nav_writings">Writings</a>
   <a href="#education" class="mobile-link" data-i18n="nav_education">Education</a>
+  <a href="#certifications" class="mobile-link" data-i18n="nav_certs">Certifications</a>
   <a href="#contact" class="mobile-link" data-i18n="nav_contact">Contact</a>
 </div>
 
@@ -2117,6 +2278,29 @@ footer {
 
 <hr class="divider">
 
+<!-- CERTIFICATIONS -->
+<section class="cert-section-bg section" id="certifications">
+  <div class="reveal">
+    <div class="section-label"><span></span> <span data-i18n="certs_label">Training & Development</span></div>
+    <h2 class="section-title" data-i18n="certs_title">Certifications</h2>
+    <p class="section-sub" data-i18n="certs_sub">Certificates earned across professional training programmes, workshops, and industry seminars throughout my career.</p>
+  </div>
+
+  <!-- Filter tabs -->
+  <div class="cert-filters reveal">
+    <button class="cert-filter-btn active" data-filter="all" data-i18n="certs_filter_all">All</button>
+    <button class="cert-filter-btn" data-filter="cert"     data-i18n="certs_filter_cert">Certification</button>
+    <button class="cert-filter-btn" data-filter="training" data-i18n="certs_filter_training">Training</button>
+    <button class="cert-filter-btn" data-filter="workshop" data-i18n="certs_filter_workshop">Workshop</button>
+    <button class="cert-filter-btn" data-filter="seminar"  data-i18n="certs_filter_seminar">Seminar</button>
+  </div>
+
+  <!-- Cards grid -->
+  <div class="cert-cards-grid" id="certCardsGrid"></div>
+</section>
+
+<hr class="divider">
+
 <!-- CONTACT -->
 <section class="contact-section" id="contact">
   <div class="section">
@@ -2431,7 +2615,173 @@ sections.forEach(s => sectionObserver.observe(s));
 // Already handled inline with onerror above
 
 // ══════════════════════════════════════════════════════════════
-// ── SUBSTACK BLOG FEED ──
+// ── CERTIFICATIONS ──
+// ══════════════════════════════════════════════════════════════
+// To add a certificate: copy one object below, fill in the fields,
+// and set file: 'certificates/your-file.pdf' once you upload the scan.
+const CERTIFICATES = [
+  {
+    type: 'cert',
+    title: 'Certified Documentary Credit Specialist (CDCS®)',
+    issuer: 'International Chamber of Commerce (ICC) / LIBF',
+    year: '2014 · Renewed 2017, 2020, 2023, 2026',
+    id: 'CDCS-ICC',
+    file: null
+  },
+  {
+    type: 'training',
+    title: 'Trade-Based Money Laundering (TBML) — Prevention & Detection',
+    issuer: 'World Bank / IFC',
+    year: '2024',
+    id: null,
+    file: null
+  },
+  {
+    type: 'training',
+    title: 'Incoterms® 2020 — Practical Applications in Trade Finance',
+    issuer: 'Trade Finance Global (TFG)',
+    year: '2024',
+    id: null,
+    file: null
+  },
+  {
+    type: 'cert',
+    title: 'Occupational Safety Card',
+    issuer: 'Finnish Occupational Safety Authority',
+    year: '2023',
+    id: null,
+    file: null
+  },
+  {
+    type: 'training',
+    title: 'Documentary Credits — UCP 600 & ISBP 745',
+    issuer: 'EBTRA Banking Academy, Bangladesh',
+    year: '2015',
+    id: null,
+    file: null
+  },
+  {
+    type: 'seminar',
+    title: 'Asia-Pacific Conference on Trade Finance',
+    issuer: 'UN ESCAP / Asian Development Bank / ICC',
+    year: '2019',
+    id: null,
+    file: null
+  },
+  {
+    type: 'seminar',
+    title: 'UN ESCAP Forum on Regional Integration',
+    issuer: 'United Nations ESCAP',
+    year: '2017',
+    id: null,
+    file: null
+  },
+  {
+    type: 'workshop',
+    title: 'SWIFT Payment Operations & Correspondent Banking',
+    issuer: 'SWIFT Institute / Export Import Bank of Bangladesh',
+    year: '2010',
+    id: null,
+    file: null
+  },
+  {
+    type: 'seminar',
+    title: 'International Conference on Sustainable Business',
+    issuer: 'JAMK University of Applied Sciences, Finland',
+    year: '2025',
+    id: null,
+    file: null
+  },
+];
+
+const TYPE_LABELS = {
+  cert:     'Certification',
+  training: 'Training',
+  workshop: 'Workshop',
+  seminar:  'Seminar',
+};
+
+const TYPE_LABELS_FI = {
+  cert:     'Sertifikaatti',
+  training: 'Koulutus',
+  workshop: 'Työpaja',
+  seminar:  'Seminaari',
+};
+
+const TYPE_LABELS_SV = {
+  cert:     'Certifiering',
+  training: 'Utbildning',
+  workshop: 'Workshop',
+  seminar:  'Seminarium',
+};
+
+function getCertTypeLabel(type) {
+  const lang = currentLang || 'en';
+  if (lang === 'fi') return TYPE_LABELS_FI[type] || type;
+  if (lang === 'sv') return TYPE_LABELS_SV[type] || type;
+  return TYPE_LABELS[type] || type;
+}
+
+function getCertBtnLabel() {
+  if (currentLang === 'fi') return '📄 Näytä todistus';
+  if (currentLang === 'sv') return '📄 Visa certifikat';
+  return '📄 View Certificate';
+}
+
+function getCertNoneLabel() {
+  if (currentLang === 'fi') return '📄 Tulossa pian';
+  if (currentLang === 'sv') return '📄 Kommer snart';
+  return '📄 Coming Soon';
+}
+
+function renderCertCards(filter) {
+  const grid = document.getElementById('certCardsGrid');
+  const filtered = filter === 'all'
+    ? CERTIFICATES
+    : CERTIFICATES.filter(c => c.type === filter);
+
+  if (!filtered.length) {
+    grid.innerHTML = `<p style="color:var(--text-dim);font-size:14px;" data-i18n="certs_none">No certificates in this category yet.</p>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((c, i) => `
+    <div class="cert-card reveal reveal-delay-${(i % 4) + 1}" data-type="${c.type}">
+      <div class="cert-card-bar ${c.type}"></div>
+      <div class="cert-card-body">
+        <div class="cert-card-top">
+          <span class="cert-type-badge ${c.type}">${getCertTypeLabel(c.type)}</span>
+          <span class="cert-card-year">${c.year}</span>
+        </div>
+        <div class="cert-card-title">${c.title}</div>
+        <div class="cert-card-issuer">${c.issuer}</div>
+        ${c.id ? `<div class="cert-card-id">ID: ${c.id}</div>` : ''}
+      </div>
+      <div class="cert-card-footer">
+        ${c.file
+          ? `<a href="${c.file}" target="_blank" rel="noopener" class="cert-view-btn">${getCertBtnLabel()}</a>`
+          : `<span class="cert-view-btn no-file">${getCertNoneLabel()}</span>`
+        }
+      </div>
+    </div>
+  `).join('');
+
+  // Trigger scroll reveal on new cards
+  grid.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+}
+
+// Filter button logic
+document.querySelectorAll('.cert-filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.cert-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCertCards(btn.dataset.filter);
+  });
+});
+
+// Initial render
+renderCertCards('all');
+
 // ══════════════════════════════════════════════════════════════
 
 const SUBSTACK_USERNAME = 'ahmedishtiak';
@@ -2548,10 +2898,14 @@ fetchSubstackPosts();
 // ══════════════════════════════════════════════════════════════
 const TRANSLATIONS = {
   en: {
-    // Nav
-    nav_home: 'Home', nav_expertise: 'Expertise', nav_experience: 'Experience',
-    nav_research: 'Research', nav_writings: 'Writings', nav_education: 'Education',
-    nav_contact: 'Contact',
+    nav_certs: 'Certifications',
+    // Certifications section
+    certs_label: 'Training & Development',
+    certs_title: 'Certifications',
+    certs_sub: 'Certificates earned across professional training programmes, workshops, and industry seminars throughout my career.',
+    certs_filter_all: 'All', certs_filter_cert: 'Certification',
+    certs_filter_training: 'Training', certs_filter_workshop: 'Workshop',
+    certs_filter_seminar: 'Seminar', certs_none: 'No certificates in this category yet.',
     // Hero
     hero_eyebrow: 'Trade Finance & Payments Professional',
     hero_title: 'CDCS® | VP – International Banking Operations | Uusimaa Region',
@@ -2620,10 +2974,14 @@ const TRANSLATIONS = {
   },
 
   fi: {
-    // Nav
-    nav_home: 'Etusivu', nav_expertise: 'Osaaminen', nav_experience: 'Kokemus',
-    nav_research: 'Tutkimus', nav_writings: 'Kirjoitukset', nav_education: 'Koulutus',
-    nav_contact: 'Yhteystiedot',
+    nav_certs: 'Sertifikaatit',
+    // Certifications section
+    certs_label: 'Koulutus ja kehitys',
+    certs_title: 'Sertifikaatit',
+    certs_sub: 'Todistukset ammattikoulutuksista, työpajoista ja toimialaseminaareista urallani.',
+    certs_filter_all: 'Kaikki', certs_filter_cert: 'Sertifikaatti',
+    certs_filter_training: 'Koulutus', certs_filter_workshop: 'Työpaja',
+    certs_filter_seminar: 'Seminaari', certs_none: 'Ei vielä todistuksia tässä kategoriassa.',
     // Hero
     hero_eyebrow: 'Kaupparahoitus- ja maksuasiantuntija',
     hero_title: 'CDCS® | VP – Kansainväliset pankkioperaatiot | Uudenmaan alue',
@@ -2692,10 +3050,14 @@ const TRANSLATIONS = {
   },
 
   sv: {
-    // Nav
-    nav_home: 'Hem', nav_expertise: 'Kompetens', nav_experience: 'Erfarenhet',
-    nav_research: 'Forskning', nav_writings: 'Skrifter', nav_education: 'Utbildning',
-    nav_contact: 'Kontakt',
+    nav_certs: 'Certifieringar',
+    // Certifications section
+    certs_label: 'Utbildning och utveckling',
+    certs_title: 'Certifieringar',
+    certs_sub: 'Certifikat från professionella utbildningar, workshops och branschseminarier under min karriär.',
+    certs_filter_all: 'Alla', certs_filter_cert: 'Certifiering',
+    certs_filter_training: 'Utbildning', certs_filter_workshop: 'Workshop',
+    certs_filter_seminar: 'Seminarium', certs_none: 'Inga certifikat i denna kategori ännu.',
     // Hero
     hero_eyebrow: 'Specialist inom handelsfinansiering och betalningar',
     hero_title: 'CDCS® | VP – Internationell bankverksamhet | Nyland',
@@ -2777,6 +3139,10 @@ function applyLanguage(lang) {
       el.innerHTML = t[key];
     }
   });
+
+  // Refresh cert cards so type labels re-render in new language
+  const activeFilter = document.querySelector('.cert-filter-btn.active');
+  if (activeFilter) renderCertCards(activeFilter.dataset.filter);
 
   // Refresh blog status message text if visible
   if (blogStatus && blogStatus.style.display !== 'none' && blogStatusMsg) {
