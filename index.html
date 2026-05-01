@@ -2376,6 +2376,9 @@ footer {
 <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
 <script>
+// ── GLOBAL STATE (declared first so all functions below can access it) ──
+let currentLang = 'en';
+
 // ── NAV SCROLL EFFECT ──
 const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => {
@@ -3126,7 +3129,7 @@ const TRANSLATIONS = {
   }
 };
 
-let currentLang = 'en';
+// currentLang declared at top of script — no re-declaration needed here
 
 function applyLanguage(lang) {
   if (!TRANSLATIONS[lang]) return;
